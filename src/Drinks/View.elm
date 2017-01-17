@@ -10,10 +10,7 @@ import Drinks.Messages exposing (Msg(..))
 view : Model -> Html Msg
 view model =
   div [ class "flex flex-column items-center flex-auto"]
-  [ div [  class "flex items-center flex-auto" ]
-    [ drinkDisplay model
-    ]
-  , button [ class "btn bg-green h3 p2 rounded align-bottom col col-12", onClick MakeDrink ] [ text "Make Drink" ]
+  [ div [  class "flex items-center flex-auto" ] [ drinkDisplay model ]
   ]
 
 drinkDisplay : Model -> Html Msg

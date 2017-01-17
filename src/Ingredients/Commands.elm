@@ -8,7 +8,7 @@ import Ingredients.Messages exposing (..)
 getAllIngredients : Cmd Msg
 getAllIngredients =
   let
-    url = "http://localhost:8000/ingredients"
+    url = "http://ryanpeaseisabitch.herokuapp.com/ingredients"
   in
     Http.get url decodeIngredientList
       |> Http.send FetchAllDone
