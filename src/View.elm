@@ -32,13 +32,11 @@ view model =
         ]
       ] -- todo: refactor below code into own submodule
     , Html.map DrinkMsg (div [ class "flex items-center"
-      , style [("height", "20vh"), ("background", "#AF8C80"), ("justify-content", "center")]]
+      , style [("height", "20vh"), ("background", "#845A4A"), ("justify-content", "center")]]
       [ button [ class "btn border rounded m2 p2", onClick Drinks.Messages.MakeDrink,
         style [("background", "transparent"), ("border-color", "#ece2df"), ("color", "#ece2df")]]
         [ text "Make Drink" ]
       ])
     ]
   , section [ class "white", style [("background", "#302d2c"), ("height", "80px")] ] [ text "other info" ]
-  {-}, Html.map SearchMsg Search.SearchBar.viewSearchBar
-  , Html.map IngredientsMsg (Ingredients.List.viewUnselected model.ingredients model.searchTerm)
-  -}]
+  ]

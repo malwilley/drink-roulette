@@ -4,6 +4,7 @@ import Ingredients.Models exposing (IngredientId)
 import Drinks.Models exposing (Model(..), DrinkContentsBackend, BackendDrink, Drink, IngredientProportion, DrinkSize(..))
 import Drinks.Messages exposing (Msg(..))
 import Drinks.Commands exposing (getDrink)
+import Drinks.DrinkSvg exposing (..)
 
 import Ingredients.Update exposing (backendIngredientToIngredient)
 
@@ -13,7 +14,7 @@ update msg model ids =
     MakeDrink ->
       ( model, getDrink ids )
     FetchDrinkDone (Ok drink) ->
-      ( convertToDrink drink, Cmd.none )
+      ( convertToDrink drink, display (List.map (\i -> i.fraction) drink.contents) )
     FetchDrinkDone (Err _) ->
       ( Error "Error retrieving drink info from server", Cmd.none )
 

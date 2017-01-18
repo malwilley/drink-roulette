@@ -1,1 +1,17 @@
+#drink-svg {
+  width: 100%;
+  max-height: 30vh;
+}
 
+.glass {
+   //stroke: #9FB4C7;
+   stroke-width: 0;
+   fill: #9FB4C7;
+}
+
+.ingredient {
+   stroke-width: 0;
+   //stroke: #28587B;
+   fill: #28587B;
+   opacity: 1;
+}

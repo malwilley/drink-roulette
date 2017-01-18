@@ -2,16 +2,15 @@ module Drinks.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Svg exposing (svg)
+import Svg.Attributes exposing (viewBox)
 
 import Drinks.Models exposing (Model(..), IngredientProportion)
 import Drinks.Messages exposing (Msg(..))
 
 view : Model -> Html Msg
 view model =
-  div [ class "flex flex-column items-center flex-auto"]
-  [ div [  class "flex items-center flex-auto" ] [ drinkDisplay model ]
-  ]
+  svg [ id "drink-svg", viewBox "0 0 100 100", style [("align-self", "flex-end")] ] []
 
 drinkDisplay : Model -> Html Msg
 drinkDisplay model =
@@ -22,6 +21,7 @@ drinkDisplay model =
       div []
       [ h1 [] [ text drink.name ]
       , div [] ( List.map ingredientView drink.ingredients )
+      , svg [ id "drink-svg", viewBox "0 0 100 100"] []
       ]
     Error msg ->
       div []
