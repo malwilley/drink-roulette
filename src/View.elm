@@ -16,8 +16,8 @@ import Drinks.Messages
 view : Model -> Html Msg
 view model =
   div []
-  [ header [ class "flex flex-column", style [("height", "100vh"), ("min-height", "500px"), ("background", "#D9DFD2")] ]
-    [ h1 [ class "bg-black white p1 center m0 bold" ] [ text "Drink Roulette" ]
+  [ header [ class "flex flex-column", style [("height", "100vh"), ("min-height", "500px"), ("background", "#111")] ]
+    [ h1 [ class "white p1 center m0 bold" ] [ text "Drink Roulette" ]
     , div [ class "flex flex-auto" ]
       [ div [ class "col col-4 center p1" ]
         [ Html.map IngredientsMsg (Ingredients.List.viewSelected model.ingredients)
@@ -32,9 +32,9 @@ view model =
         ]
       ] -- todo: refactor below code into own submodule
     , Html.map DrinkMsg (div [ class "flex items-center"
-      , style [("height", "20vh"), ("background", "#845A4A"), ("justify-content", "center")]]
-      [ button [ class "btn border rounded m2 p2", onClick Drinks.Messages.MakeDrink,
-        style [("background", "transparent"), ("border-color", "#ece2df"), ("color", "#ece2df")]]
+      , style [("height", "20vh"), ("background", "#af9664"), ("justify-content", "center")]]
+      [ button [ class "h3 btn border rounded p2", onClick Drinks.Messages.MakeDrink,
+        style [("background", "#222"), ("border-color", "#222"), ("color", "#fff"), ("border-width", "4px")]]
         [ text "Make Drink" ]
       ])
     ]

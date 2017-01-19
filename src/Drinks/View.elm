@@ -10,7 +10,7 @@ import Drinks.Messages exposing (Msg(..))
 
 view : Model -> Html Msg
 view model =
-  svg [ id "drink-svg", viewBox "0 0 100 100", style [("align-self", "flex-end")] ] []
+  svg [ id "drink-svg", viewBox "0 0 100 100", style [("align-self", "flex-end"), ("margin", "1px")] ] []
 
 drinkDisplay : Model -> Html Msg
 drinkDisplay model =
