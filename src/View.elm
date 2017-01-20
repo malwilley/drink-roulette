@@ -20,9 +20,9 @@ view model =
     [ h1 [ class "white p1 center m0 bold" ] [ text "Drink Roulette" ]
     , div [ class "flex flex-auto" ]
       [ div [ class "col col-4 center p1" ]
-        [ Html.map IngredientsMsg (Ingredients.List.viewSelected model.ingredients)
-        , Html.map SearchMsg Search.SearchBar.viewSearchBar
-        , Html.map IngredientsMsg (Ingredients.List.viewUnselected model.ingredients model.searchTerm)
+        [ Html.map SearchMsg Search.SearchBar.viewSearchBar
+        , Html.map IngredientsMsg (Ingredients.List.viewUnselected model.ingredients model.search.query )
+        , Html.map IngredientsMsg (Ingredients.List.viewSelected model.ingredients)
         ]
       , div [ class "col col-4 flex" ]
         [ Html.map DrinkMsg (Drinks.View.view model.currentDrink) ]
@@ -33,9 +33,8 @@ view model =
       ] -- todo: refactor below code into own submodule
     , Html.map DrinkMsg (div [ class "flex items-center"
       , style [("height", "15vh"), ("background", "#af9664"), ("justify-content", "center")]]
-      [ button [ class "h3 btn border rounded p2", onClick Drinks.Messages.MakeDrink,
-        style [("background", "#222"), ("border-color", "#222"), ("color", "#fff"), ("border-width", "4px")]]
-        [ text "Make Drink" ]
+      [ div [ class "h3 btn btn-makedrink", onClick Drinks.Messages.MakeDrink ]
+        [ div [ style[("display", "inline-block"), ("padding-right", "10px")]] [text "create  "], div [ class "fa fa-cogs" ] [] ]
       ])
     ]
   , section [ class "white", style [("background", "#302d2c"), ("height", "80px")] ] [ text "other info" ]

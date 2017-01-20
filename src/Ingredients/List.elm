@@ -54,7 +54,7 @@ unselectedButton item =
 selectedButton : Ingredient -> Html Msg
 selectedButton item =
   div
-    [ class "btn rounded bg-red m1 white"
+    [ class "selected-ingredient"
     , onClick (Toggle item.id) ]
     [ text item.name ]
 

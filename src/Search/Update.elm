@@ -1,10 +1,10 @@
 module Search.Update exposing (..)
 
-import Search.Models exposing (SearchTerm)
+import Search.Models exposing (..)
 import Search.Messages exposing (Msg(..))
 
-update : Msg -> SearchTerm
-update msg =
+update : Msg -> Model -> Model
+update msg model =
   case msg of
-    SetSearchTerm searchTerm ->
-      searchTerm
+    QueryChanged query ->
+      { model | query = query }

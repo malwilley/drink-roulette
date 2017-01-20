@@ -8,4 +8,6 @@ import Search.Messages exposing (Msg(..))
 
 viewSearchBar : Html Msg
 viewSearchBar =
-  input [ class "search-bar", type_ "search", onInput SetSearchTerm, placeholder "Search..."] [  ]
+  input [ class "search-bar", type_ "search", onInput QueryChanged
+  , placeholder "Search for an ingredient"]
+  [ ]

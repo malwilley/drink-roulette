@@ -1,6 +1,6 @@
 module Search.Messages exposing (..)
 
-import Search.Models exposing (SearchTerm)
+import Search.Models exposing (..)
 
 type Msg
-  = SetSearchTerm SearchTerm 
+  = QueryChanged Query

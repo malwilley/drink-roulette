@@ -16,7 +16,7 @@ update msg model =
       in
         ( { model | ingredients = updatedIngredients }, Cmd.map IngredientsMsg cmd )
     SearchMsg subMsg ->
-      ( { model | searchTerm = Search.Update.update subMsg }, Cmd.none )
+      ( { model | search = Search.Update.update subMsg model.search }, Cmd.none )
     DrinkMsg subMsg ->
       let ( newDrink, cmd ) =
         Drinks.Update.update subMsg model.currentDrink (getSelectedIds model.ingredients)
