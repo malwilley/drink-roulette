@@ -32,7 +32,7 @@ view model =
         ]
       ] -- todo: refactor below code into own submodule
     , Html.map DrinkMsg (div [ class "flex items-center"
-      , style [("height", "20vh"), ("background", "#af9664"), ("justify-content", "center")]]
+      , style [("height", "15vh"), ("background", "#af9664"), ("justify-content", "center")]]
       [ button [ class "h3 btn border rounded p2", onClick Drinks.Messages.MakeDrink,
         style [("background", "#222"), ("border-color", "#222"), ("color", "#fff"), ("border-width", "4px")]]
         [ text "Make Drink" ]

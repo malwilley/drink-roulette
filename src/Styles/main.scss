@@ -1,0 +1,31 @@
+$near-black: #111;
+$tan: #af9664;
+$gray: #9fb4c7;
+
+#drink-svg {
+  width: 100%;
+  max-height: 40vh;
+}
+
+.glass {
+   //stroke: #9FB4C7;
+   stroke-width: 0;
+   fill: #9FB4C7;
+}
+
+.ingredient {
+   stroke-width: 0;
+   //stroke: #28587B;
+   fill: #28587B;
+   opacity: 1;
+}
+
+.search-bar {
+  outline: 1px solid $tan;
+  color: lighten($near-black, 10%);
+  text-align: left;
+  background: white;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}

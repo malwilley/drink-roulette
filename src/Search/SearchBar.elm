@@ -8,6 +8,4 @@ import Search.Messages exposing (Msg(..))
 
 viewSearchBar : Html Msg
 viewSearchBar =
-  input [ type_ "search", class "mb1 p2 fit center h2 border"
-  , style[("width", "100%")], onInput SetSearchTerm
-  , placeholder "Search..."] [  ]
+  input [ class "search-bar", type_ "search", onInput SetSearchTerm, placeholder "Search..."] [  ]

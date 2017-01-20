@@ -3,7 +3,7 @@
 require('ace-css/css/ace.css');
 require('font-awesome/css/font-awesome.css');
 
-require('./index.css');
+require('./Styles/main.scss');
 require('./index.html');
 var drinkSvg = require('./drinkSvg');
 
