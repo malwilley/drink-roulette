@@ -7,7 +7,7 @@ import Html.Events exposing (..)
 import Models exposing (Model)
 import Messages exposing (Msg(..))
 import Ingredients.List
-import Search.SearchBar
+import Search.View
 import Drinks.View
 
 -- todo: refactor
@@ -20,7 +20,7 @@ view model =
     [ h1 [ class "white p1 center m0 bold" ] [ text "Drink Roulette" ]
     , div [ class "flex flex-auto" ]
       [ div [ class "col col-4 center p1" ]
-        [ Html.map SearchMsg Search.SearchBar.viewSearchBar
+        [ Html.map SearchMsg (Search.View.viewSearchBar model.search)
         , Html.map IngredientsMsg (Ingredients.List.viewUnselected model.ingredients model.search.query )
         , Html.map IngredientsMsg (Ingredients.List.viewSelected model.ingredients)
         ]
