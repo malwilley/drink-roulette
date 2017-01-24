@@ -1,23 +1,19 @@
 module Ingredients.Update exposing (..)
 
-import Ingredients.Models exposing (Ingredient, IngredientId, Category(..), BackendIngredient)
+import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
-import String exposing (..)
 
-update : Msg -> List Ingredient -> ( List Ingredient, Cmd Msg )
-update msg ingredients  =
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model  =
   case msg of
     Toggle ingredientId ->
-      ( List.map (toggleItem ingredientId) ingredients, Cmd.none )
-    SearchIngredients searchTerm ->
-      ( List.filter
-      ( \i -> String.isEmpty searchTerm || i.selected ||
-        String.contains searchTerm i.name )
-      ingredients, Cmd.none  )
+      ( { model | list = List.map (toggleItem ingredientId) model.list } , Cmd.none )
+    QueryChanged query ->
+      ( { model | searchQuery = query }, Cmd.none )
     FetchAllDone (Ok newIngredients) ->
-      ( List.filterMap backendIngredientToIngredient newIngredients, Cmd.none )
+      ( { model | list = List.filterMap backendIngredientToIngredient newIngredients } , Cmd.none )
     FetchAllDone (Err _) ->
-      ( ingredients, Cmd.none )
+      ( model, Cmd.none )
 
 backendIngredientToIngredient : BackendIngredient -> Maybe Ingredient
 backendIngredientToIngredient backendIngredient =

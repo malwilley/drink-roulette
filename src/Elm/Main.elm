@@ -7,19 +7,20 @@ import View exposing (view)
 import Messages exposing (Msg(..))
 import Ingredients.Commands exposing (getAllIngredients)
 import Drinks.Models
-import Search.Models
 import Update exposing (update)
 
 init : (Model, Cmd Msg)
 init =
-  ( { ingredients = []
-    , search = Search.Models.Model "" False
+  ( { ingredients = 
+        { list = []
+        , searchFocus = False
+        , searchQuery = ""
+      }
     , currentDrink = Drinks.Models.NoDrink }
   , Cmd.map IngredientsMsg getAllIngredients )
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
-  Sub.none
+subscriptions model = Sub.none
 
 main: Program Never Model Msg
 main =

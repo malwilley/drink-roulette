@@ -1,16 +1,28 @@
 module Ingredients.Models exposing (..)
 
+type alias Model =
+  { list : List Ingredient
+  , searchFocus : FocusBool
+  , searchQuery : Query
+  }
+
 type alias IngredientId = Int
 type Category = Alcohol | Mixer | Other
 
--- generic ingredient object
--- mapped from BackendIngredient
 type alias Ingredient =
   { id : IngredientId
   , name : String
   , category : Category
   , selected : Bool
   }
+
+type alias SearchState =
+  { query : Query
+  , focus : FocusBool
+  }
+
+type alias Query = String
+type alias FocusBool = Bool
 
 -- created from backend ingredients json
 type alias BackendIngredient =

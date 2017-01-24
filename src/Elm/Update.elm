@@ -4,22 +4,19 @@ import Messages exposing (Msg(..))
 import Models exposing (..)
 import Ingredients.Models exposing (IngredientId, Ingredient)
 import Ingredients.Update
-import Search.Update
 import Drinks.Update
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     IngredientsMsg subMsg ->
-      let ( updatedIngredients, cmd ) =
+      let ( updatedModel, cmd ) =
         Ingredients.Update.update subMsg model.ingredients
       in
-        ( { model | ingredients = updatedIngredients }, Cmd.map IngredientsMsg cmd )
-    SearchMsg subMsg ->
-      ( { model | search = Search.Update.update subMsg model.search }, Cmd.none )
+        ( { model | ingredients = updatedModel }, Cmd.map IngredientsMsg cmd )
     DrinkMsg subMsg ->
       let ( newDrink, cmd ) =
-        Drinks.Update.update subMsg model.currentDrink (getSelectedIds model.ingredients)
+        Drinks.Update.update subMsg model.currentDrink (getSelectedIds model.ingredients.list)
       in
         ( { model | currentDrink = newDrink }, Cmd.map DrinkMsg cmd )
 

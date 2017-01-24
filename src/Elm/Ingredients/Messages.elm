@@ -2,9 +2,9 @@ module Ingredients.Messages exposing (..)
 
 import Http
 
-import Ingredients.Models exposing (Ingredient, IngredientId, BackendIngredient)
+import Ingredients.Models exposing (..)
 
 type Msg
   = Toggle IngredientId
-  | SearchIngredients String
+  | QueryChanged Query
   | FetchAllDone (Result Http.Error (List BackendIngredient))

@@ -1,20 +1,19 @@
-module Search.View exposing (viewSearchBar)
+module Ingredients.ViewSearch exposing (viewSearchBar)
 
 import String
 import Regex exposing (regex, caseInsensitive)
 import Html exposing (..)
 import Html.Attributes exposing (class, style, type_, placeholder)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onInput, onClick)
 
-import Ingredients.Models exposing (Ingredient)
-import Search.Models exposing (..)
-import Search.Messages exposing (Msg(..))
+import Ingredients.Models exposing (..)
+import Ingredients.Messages exposing (Msg(..))
 
-viewSearchBar : Model -> List Ingredient -> Html Msg
-viewSearchBar model ingredients =
+viewSearchBar : Model -> Html Msg
+viewSearchBar model =
   div []
   [ inputView
-  , resultsView ingredients model.query
+  , resultsView model.list model.searchQuery
   ]
 
 inputView : Html Msg
@@ -26,7 +25,7 @@ resultsView : List Ingredient -> Query -> Html Msg
 resultsView options query =
   ul [ class "search-results" ]
   ( getSearchResults options query
-    |> List.map (\i -> li [] [ text i.name ]) )
+    |> List.map (\i -> li [ onClick (Toggle i.id) ] [ text i.name ]) )
 
 
 getSearchResults : List Ingredient -> Query -> List Ingredient
