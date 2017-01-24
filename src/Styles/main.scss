@@ -52,6 +52,13 @@ $gray: #9fb4c7;
   border-radius: 4px 4px 0px 0px;
 }
 
-.search-results {
+ul.search-results {
   background: white;
+  margin: 0;
+  list-style: none;
+}
+
+ul.search-results li {
+  text-align: left;
+  padding: 10px;
 }

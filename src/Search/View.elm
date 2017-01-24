@@ -1,6 +1,7 @@
 module Search.View exposing (viewSearchBar)
-import Debug
+
 import String
+import Regex exposing (regex, caseInsensitive)
 import Html exposing (..)
 import Html.Attributes exposing (class, style, type_, placeholder)
 import Html.Events exposing (onInput)
@@ -9,11 +10,11 @@ import Ingredients.Models exposing (Ingredient)
 import Search.Models exposing (..)
 import Search.Messages exposing (Msg(..))
 
-viewSearchBar : Model -> Html Msg
-viewSearchBar model =
+viewSearchBar : Model -> List Ingredient -> Html Msg
+viewSearchBar model ingredients =
   div []
   [ inputView
-  , resultsView model.options model.query
+  , resultsView ingredients model.query
   ]
 
 inputView : Html Msg
@@ -21,32 +22,41 @@ inputView =
   input [ class "search-bar", type_ "search", onInput QueryChanged
   , placeholder "Search for an ingredient"] []
 
-resultsView : IngredientOptions -> Query -> Html Msg
+resultsView : List Ingredient -> Query -> Html Msg
 resultsView options query =
   ul [ class "search-results" ]
   ( getSearchResults options query
-    |> List.map (\i -> li[][ text i.name ]) )
+    |> List.map (\i -> li [] [ text i.name ]) )
 
 
-getSearchResults : IngredientOptions -> Query -> IngredientOptions
+getSearchResults : List Ingredient -> Query -> List Ingredient
 getSearchResults options query =
   let
     maxResults = 5
   in
-    options
-    |> Debug.log "options"
-    |> List.sortWith (queryCompare query)
-    |> List.take maxResults
+    case query of
+      "" ->
+        []
+      query ->
+        options
+        |> List.filter (\i -> Regex.contains (caseInsensitive (regex query)) i.name)
+        |> List.sortWith (sortByQuery query)
+        |> List.take maxResults
 
 
-{-| Returns a sort function for comparing ingredients based on search query -}
-queryCompare : Query -> Ingredient -> Ingredient -> Order
-queryCompare query ingredient1 ingredient2 =
+-- get score
+sortByQuery : Query -> Ingredient -> Ingredient -> Order
+sortByQuery query ing1 ing2 =
   let
-    l1 = levenshtein query ingredient1.name
-    l2 = levenshtein query ingredient2.name
+    length1 = String.length ing1.name
+    length2 = String.length ing2.name
   in
-    compare l1 l2
+    if length1 == length2 then
+      EQ
+    else if length1 > length2 then
+      LT
+    else
+      GT
 
 {-| Returns the Levenshtein distance for two strings -}
 levenshtein : Query -> String -> Int

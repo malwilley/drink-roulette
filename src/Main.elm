@@ -13,7 +13,7 @@ import Update exposing (update)
 init : (Model, Cmd Msg)
 init =
   ( { ingredients = []
-    , search = Search.Models.Model [] "" False
+    , search = Search.Models.Model "" False
     , currentDrink = Drinks.Models.NoDrink }
   , Cmd.map IngredientsMsg getAllIngredients )
 
