@@ -24,7 +24,9 @@ $gray: #9fb4c7;
 .selected-ingredient {
   color: white;
   font-size: 1em;
-  text-align: left;
+  display: inline-block;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 .btn-makedrink {
@@ -37,7 +39,6 @@ $gray: #9fb4c7;
     font-weight: bold;
     text-transform: uppercase;
   }
-
 }
 
 .search-bar {
@@ -52,13 +53,18 @@ $gray: #9fb4c7;
   border-radius: 4px 4px 0px 0px;
 }
 
-ul.search-results {
+ul.search-results-container {
+  position: absolute;
+  width: 100%;
   background: white;
   margin: 0;
   list-style: none;
-}
+  border-radius: 0px 0px 4px 4px;
 
-ul.search-results li {
-  text-align: left;
-  padding: 10px;
+  li {
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
 }

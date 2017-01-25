@@ -1,6 +1,14 @@
 module Ingredients.Models exposing (..)
 
 
+init : Model
+init =
+    { list = []
+    , searchFocus = False
+    , searchQuery = ""
+    }
+
+
 type alias Model =
     { list : List Ingredient
     , searchFocus : FocusBool

@@ -3,6 +3,11 @@ module Drinks.Models exposing (..)
 import Ingredients.Models exposing (Ingredient, BackendIngredient)
 
 
+init : Model
+init =
+    NoDrink
+
+
 type Model
     = Success Drink
     | Error String

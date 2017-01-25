@@ -13,7 +13,7 @@ viewSearchBar : Model -> Html Msg
 viewSearchBar model =
     div []
         [ inputView
-        , resultsView model.list model.searchQuery
+        , div [] [ resultsView model.list model.searchQuery ]
         ]
 
 
@@ -30,10 +30,35 @@ inputView =
 
 resultsView : List Ingredient -> Query -> Html Msg
 resultsView options query =
-    ul [ class "search-results" ]
-        (getSearchResults options query
-            |> List.map (\i -> li [ onClick (Toggle i.id) ] [ text i.name ])
-        )
+    div [ class "relative" ]
+        [ ul [ class "search-results-container" ]
+            (resultItemsView options query)
+        ]
+
+
+resultItemsView : List Ingredient -> Query -> List (Html Msg)
+resultItemsView options query =
+    case query of
+        "" ->
+            []
+
+        query ->
+            let
+                results =
+                    getSearchResults options query
+            in
+                case results of
+                    [] ->
+                        [ li [] [ text "No results" ] ]
+
+                    results ->
+                        results
+                            |> List.map resultItemView
+
+
+resultItemView : Ingredient -> Html Msg
+resultItemView ingredient =
+    li [ onClick (Toggle ingredient.id) ] [ text ingredient.name ]
 
 
 getSearchResults : List Ingredient -> Query -> List Ingredient
@@ -42,16 +67,11 @@ getSearchResults options query =
         maxResults =
             5
     in
-        case query of
-            "" ->
-                []
-
-            query ->
-                options
-                    |> List.filter (\i -> Regex.contains (caseInsensitive (regex query)) i.name)
-                    |> List.filter (\i -> not i.selected)
-                    |> List.sortWith (sortByQuery query)
-                    |> List.take maxResults
+        options
+            |> List.filter (\i -> Regex.contains (caseInsensitive (regex query)) i.name)
+            |> List.filter (\i -> not i.selected)
+            |> List.sortWith (sortByQuery query)
+            |> List.take maxResults
 
 
 sortByQuery : Query -> Ingredient -> Ingredient -> Order
@@ -66,9 +86,9 @@ sortByQuery query ing1 ing2 =
         if length1 == length2 then
             EQ
         else if length1 > length2 then
-            LT
-        else
             GT
+        else
+            LT
 
 
 {-| Returns the Levenshtein distance for two strings

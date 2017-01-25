@@ -6,17 +6,14 @@ import View exposing (view)
 import Messages exposing (Msg(..))
 import Ingredients.Commands exposing (getAllIngredients)
 import Drinks.Models
+import Ingredients.Models
 import Update exposing (update)
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { ingredients =
-            { list = []
-            , searchFocus = False
-            , searchQuery = ""
-            }
-      , currentDrink = Drinks.Models.NoDrink
+    ( { ingredients = Ingredients.Models.init
+      , currentDrink = Drinks.Models.init
       }
     , Cmd.map IngredientsMsg getAllIngredients
     )
