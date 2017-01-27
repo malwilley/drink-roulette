@@ -1,10 +1,10 @@
 module Ingredients.ViewSearch exposing (viewSearchBar)
 
 import String
-import Regex exposing (regex, caseInsensitive)
 import Html exposing (..)
-import Html.Attributes exposing (class, style, type_, placeholder)
-import Html.Events exposing (onInput, onClick)
+import Html.Attributes exposing (class, style, type_, placeholder, value)
+import Html.Events exposing (on, onInput, onClick, onFocus, onBlur, keyCode)
+import Json.Decode
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
 
@@ -12,83 +12,64 @@ import Ingredients.Messages exposing (Msg(..))
 viewSearchBar : Model -> Html Msg
 viewSearchBar model =
     div []
-        [ inputView
-        , div [] [ resultsView model.list model.searchQuery ]
+        [ inputView model
+        , div [] [ resultsView model ]
         ]
 
 
-inputView : Html Msg
-inputView =
+inputView : Model -> Html Msg
+inputView model =
     input
         [ class "search-bar"
         , type_ "search"
+        , value model.searchQuery
+        , onKeyDown OnKeyDown
         , onInput QueryChanged
+        , onFocus SearchFocused
+        , onBlur SearchBlurred
         , placeholder "Search for an ingredient"
         ]
         []
 
 
-resultsView : List Ingredient -> Query -> Html Msg
-resultsView options query =
+resultsView : Model -> Html Msg
+resultsView model =
     div [ class "relative" ]
         [ ul [ class "search-results-container" ]
-            (resultItemsView options query)
+            (case model.searchState of
+                Blurred ->
+                    []
+
+                Editing results ->
+                    case model.searchQuery of
+                        "" ->
+                            []
+
+                        _ ->
+                            resultItemsView results
+            )
         ]
 
 
-resultItemsView : List Ingredient -> Query -> List (Html Msg)
-resultItemsView options query =
-    case query of
-        "" ->
-            []
+resultItemsView : List Ingredient -> List (Html Msg)
+resultItemsView results =
+    case results of
+        [] ->
+            [ li [] [ text "No results" ] ]
 
-        query ->
-            let
-                results =
-                    getSearchResults options query
-            in
-                case results of
-                    [] ->
-                        [ li [] [ text "No results" ] ]
-
-                    results ->
-                        results
-                            |> List.map resultItemView
+        results ->
+            results
+                |> List.map resultItemView
 
 
 resultItemView : Ingredient -> Html Msg
 resultItemView ingredient =
-    li [ onClick (Toggle ingredient.id) ] [ text ingredient.name ]
+    li [ onClick (SearchResultClicked ingredient) ] [ text ingredient.name ]
 
 
-getSearchResults : List Ingredient -> Query -> List Ingredient
-getSearchResults options query =
-    let
-        maxResults =
-            5
-    in
-        options
-            |> List.filter (\i -> Regex.contains (caseInsensitive (regex query)) i.name)
-            |> List.filter (\i -> not i.selected)
-            |> List.sortWith (sortByQuery query)
-            |> List.take maxResults
-
-
-sortByQuery : Query -> Ingredient -> Ingredient -> Order
-sortByQuery query ing1 ing2 =
-    let
-        length1 =
-            String.length ing1.name
-
-        length2 =
-            String.length ing2.name
-    in
-        if length1 == length2 then
-            EQ
-        else if length1 > length2 then
-            GT
-        else
-            LT
+onKeyDown : (Int -> Msg) -> Attribute Msg
+onKeyDown tagger =
+    on "keydown" (Json.Decode.map tagger keyCode)
 
 
 {-| Returns the Levenshtein distance for two strings

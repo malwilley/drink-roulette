@@ -5,6 +5,10 @@ import Ingredients.Models exposing (..)
 
 
 type Msg
-    = Toggle IngredientId
+    = SearchResultClicked Ingredient
+    | SelectedIngredientClicked Ingredient
     | QueryChanged Query
+    | OnKeyDown Int
+    | SearchBlurred
+    | SearchFocused
     | FetchAllDone (Result Http.Error (List BackendIngredient))

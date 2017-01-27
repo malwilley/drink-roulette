@@ -4,14 +4,14 @@ module Ingredients.Models exposing (..)
 init : Model
 init =
     { list = []
-    , searchFocus = False
+    , searchState = Blurred
     , searchQuery = ""
     }
 
 
 type alias Model =
     { list : List Ingredient
-    , searchFocus : FocusBool
+    , searchState : SearchState
     , searchQuery : Query
     }
 
@@ -34,18 +34,13 @@ type alias Ingredient =
     }
 
 
-type alias SearchState =
-    { query : Query
-    , focus : FocusBool
-    }
+type SearchState
+    = Editing (List Ingredient)
+    | Blurred
 
 
 type alias Query =
     String
-
-
-type alias FocusBool =
-    Bool
 
 
 type alias BackendIngredient =

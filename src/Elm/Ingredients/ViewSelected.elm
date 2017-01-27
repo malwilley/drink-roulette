@@ -8,12 +8,12 @@ import Ingredients.Messages exposing (..)
 
 
 selectedButton : Ingredient -> Html Msg
-selectedButton item =
+selectedButton ingredient =
     div
         [ class "selected-ingredient m1 p1 white bg-red rounded"
-        , onClick (Toggle item.id)
+        , onClick (SelectedIngredientClicked ingredient)
         ]
-        [ text item.name ]
+        [ text ingredient.name ]
 
 
 viewSelected : Model -> Html Msg
