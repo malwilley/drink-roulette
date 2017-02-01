@@ -17,7 +17,7 @@ view model =
         [ header [ class "flex flex-column", style [ ( "height", "100vh" ), ( "min-height", "500px" ), ( "background", "#111" ) ] ]
             [ h1 [ class "white p1 center m0 bold" ] [ text "Drink Roulette" ]
             , div [ class "flex flex-auto" ]
-                [ div [ class "col col-4 center p1" ]
+                [ div [ class "col col-4 center p1 flex flex-column flex-stretch" ]
                     [ Html.map IngredientsMsg (viewSearchBar model.ingredients)
                     , Html.map IngredientsMsg (viewSelected model.ingredients)
                     ]

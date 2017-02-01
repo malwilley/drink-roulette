@@ -44,13 +44,22 @@ $gray: #9fb4c7;
 .search-bar {
   border: none;
   border-bottom: 1px solid $near-black;
-  color: lighten($near-black, 10%);
-  text-align: left;
   background: white;
   width: 100%;
-  padding: 1em;
-  font-size: 1em;
   border-radius: 4px 4px 0px 0px;
+
+  .fa-search {
+    //color: $tan;
+  }
+
+  input {
+    background: transparent;
+    color: lighten($near-black, 10%);
+    text-align: left;
+    font-size: 1em;
+    padding: 1em;
+    border: none;
+  }
 }
 
 ul.search-results-container {
@@ -58,13 +67,37 @@ ul.search-results-container {
   width: 100%;
   background: white;
   margin: 0;
+  padding: 0;
   list-style: none;
   border-radius: 0px 0px 4px 4px;
 
   li {
     text-align: left;
-    padding: 10px;
+    padding: 0;
+    height: 50px;
     cursor: pointer;
     text-transform: capitalize;
+
+    .search-text {
+      line-height: 50px;
+    }
+  }
+
+  li:hover {
+    background: transparentize($near-black, 0.90);
+  }
+}
+
+.search-icon-container {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+}
+
+section.selected-ingredients {
+  h2 {
+    text-align: left;
+    color: $tan;
+    border-bottom: 1px solid $tan;
   }
 }

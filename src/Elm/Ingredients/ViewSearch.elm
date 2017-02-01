@@ -19,17 +19,20 @@ viewSearchBar model =
 
 inputView : Model -> Html Msg
 inputView model =
-    input
-        [ class "search-bar"
-        , type_ "search"
-        , value model.searchQuery
-        , onKeyDown OnKeyDown
-        , onInput QueryChanged
-        , onFocus SearchFocused
-        , onBlur SearchBlurred
-        , placeholder "Search for an ingredient"
+    div [ class "search-bar flex flex-center flex-stretch" ]
+        [ div [ class "search-icon-container fa fa-search p2" ] []
+        , input
+            [ class "flex-auto"
+            , type_ "search"
+            , value model.searchQuery
+            , onKeyDown OnKeyDown
+            , onInput QueryChanged
+            , onFocus SearchFocused
+            , onBlur SearchBlurred
+            , placeholder "Search for an ingredient"
+            ]
+            []
         ]
-        []
 
 
 resultsView : Model -> Html Msg
@@ -55,7 +58,7 @@ resultItemsView : List Ingredient -> List (Html Msg)
 resultItemsView results =
     case results of
         [] ->
-            [ li [] [ text "No results" ] ]
+            [ div [ class "ml2 p1 left" ] [ text "No results" ] ]
 
         results ->
             results
@@ -64,7 +67,13 @@ resultItemsView results =
 
 resultItemView : Ingredient -> Html Msg
 resultItemView ingredient =
-    li [ onClick (SearchResultClicked ingredient) ] [ text ingredient.name ]
+    li
+        [ class "flex flex-center"
+        , onClick (SearchResultClicked ingredient)
+        ]
+        [ div [ class "search-icon-container fa fa-glass p2" ] []
+        , div [ class "search-text flex-auto" ] [ text ingredient.name ]
+        ]
 
 
 onKeyDown : (Int -> Msg) -> Attribute Msg

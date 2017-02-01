@@ -7,6 +7,48 @@ import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (..)
 
 
+viewSelected : Model -> Html Msg
+viewSelected model =
+    section [ class "selected-ingredients flex-auto flex flex-column flex-stretch" ]
+        [ viewSelectedCategory Alcohol model
+        , viewSelectedCategory Mixer model
+        , viewSelectedCategory Other model
+        ]
+
+
+viewSelectedCategory : Category -> Model -> Html Msg
+viewSelectedCategory cat model =
+    let
+        ( name, icon ) =
+            case cat of
+                Alcohol ->
+                    ( "Alcohol", "fa fa-glass" )
+
+                Mixer ->
+                    ( "Mixers", "fa fa-glass" )
+
+                Other ->
+                    ( "Other", "fa fa-glass" )
+    in
+        div [ class "left flex-auto flex flex-column flex-stretch" ]
+            [ h2 []
+                [ div [ class ("inline-block m1 " ++ icon) ] []
+                , div [ class "h2 inline-block" ] [ text name ]
+                ]
+            , viewCategoryButtons cat model
+            ]
+
+
+viewCategoryButtons : Category -> Model -> Html Msg
+viewCategoryButtons cat model =
+    div [ class "flex flex-justify flex-wrap overflow-auto" ]
+        (model.list
+            |> List.filter (\i -> i.selected)
+            |> List.filter (\i -> i.category == cat)
+            |> List.map selectedButton
+        )
+
+
 selectedButton : Ingredient -> Html Msg
 selectedButton ingredient =
     div
@@ -14,12 +56,3 @@ selectedButton ingredient =
         , onClick (SelectedIngredientClicked ingredient)
         ]
         [ text ingredient.name ]
-
-
-viewSelected : Model -> Html Msg
-viewSelected model =
-    div [ class "flex flex-justify flex-wrap mt2" ]
-        (model.list
-            |> List.filter (\i -> i.selected)
-            |> List.map selectedButton
-        )
