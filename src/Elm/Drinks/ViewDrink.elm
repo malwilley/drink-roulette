@@ -1,4 +1,4 @@
-module Drinks.View exposing (..)
+module Drinks.ViewDrink exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
