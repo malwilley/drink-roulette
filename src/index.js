@@ -5,12 +5,7 @@ require('font-awesome/css/font-awesome.css');
 
 require('./styles/main.scss');
 require('./index.html');
-var drinkSvg = require('./js/drinkSvg');
 
 var Elm = require('./Elm/Main.elm');
 var mountNode = document.getElementById('main');
 var app = Elm.Main.embed(mountNode);
-
-app.ports.display.subscribe(function(fractions) {
-  drinkSvg.display(fractions);
-});

@@ -3,22 +3,16 @@ $near-black-light: lighten($near-black, 10%);
 $tan: #af9664;
 $gray: #9fb4c7;
 
-#drink-svg {
+svg {
+  align-self: flex-end;
   width: 100%;
   max-height: 40vh;
-}
+  margin-bottom: 1px;
 
-.glass {
-   //stroke: #9FB4C7;
-   stroke-width: 0;
-   fill: #9FB4C7;
-}
-
-.ingredient {
-   stroke-width: 0;
-   //stroke: #28587B;
-   fill: #28587B;
-   opacity: 1;
+  rect.glass {
+    stroke-width: 0;
+    fill: $gray;
+  }
 }
 
 .selected-ingredient {

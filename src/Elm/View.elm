@@ -26,7 +26,6 @@ view model =
                 , div [ class "col col-4 center p3 flex flex-column flex-stretch" ]
                     [ Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink) ]
                 ]
-              -- todo: refactor below code into own submodule
             , Html.map DrinkMsg (Drinks.ViewCreate.view model.currentDrink)
             ]
         , section [ class "white", style [ ( "background", "#302d2c" ), ( "height", "80px" ) ] ] [ text "other info" ]
