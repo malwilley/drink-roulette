@@ -1,16 +1,18 @@
 module Ingredients.Models exposing (..)
 
+import Common.Models exposing (..)
+
 
 init : Model
 init =
-    { list = []
+    { ingredients = Fetching
     , searchState = Blurred
     , searchQuery = ""
     }
 
 
 type alias Model =
-    { list : List Ingredient
+    { ingredients : HttpResult (List Ingredient)
     , searchState : SearchState
     , searchQuery : Query
     }

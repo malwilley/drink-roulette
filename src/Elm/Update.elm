@@ -2,6 +2,7 @@ module Update exposing (..)
 
 import Messages exposing (Msg(..))
 import Models exposing (..)
+import Common.Models exposing (..)
 import Ingredients.Models exposing (IngredientId, Ingredient)
 import Ingredients.Update
 import Drinks.Update
@@ -20,13 +21,21 @@ update msg model =
         DrinkMsg subMsg ->
             let
                 ( newDrink, cmd ) =
-                    Drinks.Update.update subMsg model.currentDrink (getSelectedIds model.ingredients.list)
+                    Drinks.Update.update subMsg model.currentDrink (getSelectedIds model.ingredients)
             in
                 ( { model | currentDrink = newDrink }, Cmd.map DrinkMsg cmd )
 
 
-getSelectedIds : List Ingredient -> List IngredientId
-getSelectedIds ingredients =
-    ingredients
-        |> List.filter (\i -> i.selected)
-        |> List.map (\i -> i.id)
+getSelectedIds : Ingredients.Models.Model -> List IngredientId
+getSelectedIds ingModel =
+    case ingModel.ingredients of
+        Succeed ingredients ->
+            ingredients
+                |> List.filter (\i -> i.selected)
+                |> List.map (\i -> i.id)
+
+        Fetching ->
+            []
+
+        Fail _ ->
+            []

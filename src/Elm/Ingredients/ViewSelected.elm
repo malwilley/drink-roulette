@@ -3,6 +3,7 @@ module Ingredients.ViewSelected exposing (viewSelected)
 import Html exposing (..)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
+import Common.Models exposing (..)
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (..)
 
@@ -41,12 +42,20 @@ viewSelectedCategory cat model =
 
 viewCategoryButtons : Category -> Model -> Html Msg
 viewCategoryButtons cat model =
-    div [ class "flex flex-justify flex-wrap overflow-auto" ]
-        (model.list
-            |> List.filter (\i -> i.selected)
-            |> List.filter (\i -> i.category == cat)
-            |> List.map selectedButton
-        )
+    case model.ingredients of
+        Succeed ingredients ->
+            div [ class "flex flex-justify flex-wrap overflow-auto" ]
+                (ingredients
+                    |> List.filter (\i -> i.selected)
+                    |> List.filter (\i -> i.category == cat)
+                    |> List.map selectedButton
+                )
+
+        Fetching ->
+            div [] []
+
+        Fail _ ->
+            div [] []
 
 
 selectedButton : Ingredient -> Html Msg

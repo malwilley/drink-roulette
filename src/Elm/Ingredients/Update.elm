@@ -1,6 +1,7 @@
 module Ingredients.Update exposing (..)
 
 import Regex exposing (regex, caseInsensitive)
+import Common.Models exposing (..)
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
 
@@ -55,10 +56,15 @@ update msg model =
             ( setEditingState model, Cmd.none )
 
         FetchAllDone (Ok newIngredients) ->
-            ( { model | list = List.filterMap backendIngredientToIngredient newIngredients }, Cmd.none )
+            ( { model
+                | ingredients =
+                    Succeed (List.filterMap backendIngredientToIngredient newIngredients)
+              }
+            , Cmd.none
+            )
 
-        FetchAllDone (Err _) ->
-            ( model, Cmd.none )
+        FetchAllDone (Err err) ->
+            ( { model | ingredients = Fail (toString err) }, Cmd.none )
 
 
 setQuery : Query -> Model -> Model
@@ -68,7 +74,15 @@ setQuery query model =
 
 setEditingState : Model -> Model
 setEditingState model =
-    { model | searchState = Editing (getSearchResults model.list model.searchQuery) }
+    case model.ingredients of
+        Fetching ->
+            model
+
+        Succeed ingredients ->
+            { model | searchState = Editing (getSearchResults ingredients model.searchQuery) }
+
+        Fail _ ->
+            model
 
 
 getSearchResults : List Ingredient -> Query -> List Ingredient
@@ -139,7 +153,15 @@ intToCategory num =
 
 toggleIngredient : Ingredient -> Model -> Model
 toggleIngredient ingredient model =
-    { model | list = List.map (toggleMatch ingredient) model.list }
+    case model.ingredients of
+        Succeed ingredients ->
+            { model | ingredients = Succeed (List.map (toggleMatch ingredient) ingredients) }
+
+        Fetching ->
+            model
+
+        Fail _ ->
+            model
 
 
 toggleMatch : Ingredient -> Ingredient -> Ingredient

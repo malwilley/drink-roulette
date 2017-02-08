@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class, style, type_, placeholder, value)
 import Html.Events exposing (on, onInput, onClick, onFocus, onBlur, keyCode)
 import Json.Decode
+import Common.Models exposing (..)
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
 
@@ -20,7 +21,7 @@ viewSearchBar model =
 inputView : Model -> Html Msg
 inputView model =
     div [ class "search-bar flex flex-center flex-stretch" ]
-        [ div [ class "search-icon-container fa fa-search p2" ] []
+        [ getSearchIcon model
         , input
             [ class "flex-auto"
             , type_ "search"
@@ -33,6 +34,19 @@ inputView model =
             ]
             []
         ]
+
+
+getSearchIcon : Model -> Html Msg
+getSearchIcon model =
+    case model.ingredients of
+        Fetching ->
+            div [ class "search-icon-container p2 fa fa-spin fa-circle-o-notch" ] []
+
+        Succeed ingedients ->
+            div [ class "search-icon-container p2 fa fa-search" ] []
+
+        Fail msg ->
+            div [ class "search-icon-container p2 fa fa-refresh" ] []
 
 
 resultsView : Model -> Html Msg
