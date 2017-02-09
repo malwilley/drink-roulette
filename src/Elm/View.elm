@@ -15,15 +15,16 @@ view : Model -> Html Msg
 view model =
     div []
         [ header [ class "flex flex-column", style [ ( "height", "100vh" ), ( "min-height", "500px" ), ( "background", "#111" ) ] ]
-            [ h1 [ class "white p1 center m0 bold" ] [ text "Drink Roulette" ]
+            [ h1 [ class "white p1 center m1 bold" ] [ text "Drink Roulette" ]
             , div [ class "flex flex-auto" ]
-                [ div [ class "col col-4 center p3 flex flex-column flex-stretch" ]
-                    [ Html.map IngredientsMsg (viewSearchBar model.ingredients)
-                    , Html.map IngredientsMsg (viewSelected model.ingredients)
+                [ div [ class "col col-4 center px3 flex flex-column flex-stretch" ]
+                    [ Html.map IngredientsMsg (viewSelected model.ingredients)
                     ]
-                , div [ class "col col-4 flex" ]
-                    [ Html.map DrinkMsg (Drinks.ViewDrink.view model.currentDrink) ]
-                , div [ class "col col-4 center p3 flex flex-column flex-stretch" ]
+                , div [ class "col col-4 px3 flex flex-column items-stretch justify-between" ]
+                    [ Html.map IngredientsMsg (viewSearchBar model.ingredients)
+                    , Html.map DrinkMsg (Drinks.ViewDrink.view model.currentDrink)
+                    ]
+                , div [ class "col col-4 center px3 flex flex-column flex-stretch" ]
                     [ Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink) ]
                 ]
             , Html.map DrinkMsg (Drinks.ViewCreate.view model.currentDrink)

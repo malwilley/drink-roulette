@@ -32,9 +32,9 @@ viewSelectedCategory cat model =
                     ( "Other", "fa fa-glass" )
     in
         div [ class "left flex-auto flex flex-column flex-stretch" ]
-            [ h2 []
+            [ h2 [ class "h3" ]
                 [ div [ class ("inline-block m1 " ++ icon) ] []
-                , div [ class "h2 inline-block" ] [ text name ]
+                , div [ class "inline-block" ] [ text name ]
                 ]
             , viewCategoryButtons cat model
             ]
