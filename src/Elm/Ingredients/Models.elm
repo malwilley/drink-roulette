@@ -32,6 +32,7 @@ type alias Ingredient =
     { id : IngredientId
     , name : String
     , category : Category
+    , color : String
     , selected : Bool
     }
 
@@ -43,10 +44,3 @@ type SearchState
 
 type alias Query =
     String
-
-
-type alias BackendIngredient =
-    { id : Int
-    , name : String
-    , category : Int
-    }

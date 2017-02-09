@@ -4,9 +4,9 @@ import String
 import Http
 import Json.Decode as Decode exposing (..)
 import Ingredients.Models exposing (IngredientId)
-import Ingredients.Commands exposing (ingredientDecoder)
+import Ingredients.Commands
 import Drinks.Messages exposing (..)
-import Drinks.Models exposing (BackendDrink, DrinkContentsBackend)
+import Drinks.Models exposing (..)
 
 
 getDrink : List IngredientId -> Cmd Msg
@@ -20,21 +20,60 @@ drinkUrl ids =
     "http://ryanpeaseisabitch.herokuapp.com/makedrink/" ++ (String.join "-" (List.map toString ids))
 
 
-drinkDecoder : Decoder BackendDrink
+drinkDecoder : Decoder Drink
 drinkDecoder =
-    map3 BackendDrink
+    map3 Drink
         (field "Name" string)
         (field "Contents" contentsListDecoder)
-        (field "Size" int)
+        drinkSizeDecoder
 
 
-contentsListDecoder : Decoder (List DrinkContentsBackend)
+drinkSizeDecoder : Decoder DrinkSize
+drinkSizeDecoder =
+    (field "Size" int)
+        |> andThen intToDrinkSizeDecoder
+
+
+intToDrinkSizeDecoder : Int -> Decoder DrinkSize
+intToDrinkSizeDecoder num =
+    let
+        ds =
+            intToDrinkSize num
+    in
+        case ds of
+            Just ds ->
+                succeed ds
+
+            Nothing ->
+                fail (toString num ++ " is not a valid drink size number")
+
+
+intToDrinkSize : Int -> Maybe DrinkSize
+intToDrinkSize num =
+    case num of
+        0 ->
+            Just Shot
+
+        1 ->
+            Just Pint
+
+        2 ->
+            Just Cup
+
+        3 ->
+            Just Buttchug
+
+        _ ->
+            Nothing
+
+
+contentsListDecoder : Decoder (List IngredientProportion)
 contentsListDecoder =
     list contentsDecoder
 
 
-contentsDecoder : Decoder DrinkContentsBackend
+contentsDecoder : Decoder IngredientProportion
 contentsDecoder =
-    map2 DrinkContentsBackend
-        (field "Ingredient" ingredientDecoder)
+    map2 IngredientProportion
+        (field "Ingredient" Ingredients.Commands.ingredientDecoder)
         (field "Fraction" float)

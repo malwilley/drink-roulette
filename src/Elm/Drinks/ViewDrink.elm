@@ -104,7 +104,7 @@ drawIngredient dim fracUsed ip =
             , width (toString (dim.width - (2 * (dim.thickness + dim.pad))))
             , height (toString (ingHeight))
             , strokeWidth "0"
-            , fill "white"
+            , fill ip.ingredient.color
             ]
             []
 

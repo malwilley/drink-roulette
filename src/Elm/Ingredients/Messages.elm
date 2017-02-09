@@ -11,4 +11,4 @@ type Msg
     | OnKeyDown Int
     | SearchBlurred
     | SearchFocused
-    | FetchAllDone (Result Http.Error (List BackendIngredient))
+    | FetchAllDone (Result Http.Error (List Ingredient))

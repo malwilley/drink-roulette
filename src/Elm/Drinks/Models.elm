@@ -1,6 +1,6 @@
 module Drinks.Models exposing (..)
 
-import Ingredients.Models exposing (Ingredient, BackendIngredient)
+import Ingredients.Models exposing (Ingredient)
 
 
 init : Model
@@ -31,17 +31,4 @@ type alias Drink =
     { name : String
     , ingredients : List IngredientProportion
     , size : DrinkSize
-    }
-
-
-type alias DrinkContentsBackend =
-    { ingredient : BackendIngredient
-    , fraction : Float
-    }
-
-
-type alias BackendDrink =
-    { name : String
-    , contents : List DrinkContentsBackend
-    , size : Int
     }

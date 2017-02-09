@@ -61,7 +61,8 @@ viewCategoryButtons cat model =
 selectedButton : Ingredient -> Html Msg
 selectedButton ingredient =
     div
-        [ class "selected-ingredient m1 p1 white bg-red rounded"
+        [ class "selected-ingredient m1 p1 white rounded"
+        , style [ ( "background", ingredient.color ) ]
         , onClick (SelectedIngredientClicked ingredient)
         ]
         [ text ingredient.name ]

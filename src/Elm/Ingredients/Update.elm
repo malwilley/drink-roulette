@@ -58,7 +58,7 @@ update msg model =
         FetchAllDone (Ok newIngredients) ->
             ( { model
                 | ingredients =
-                    Succeed (List.filterMap backendIngredientToIngredient newIngredients)
+                    Succeed newIngredients
               }
             , Cmd.none
             )
@@ -114,41 +114,6 @@ sortByQuery query ing1 ing2 =
             GT
         else
             LT
-
-
-backendIngredientToIngredient : BackendIngredient -> Maybe Ingredient
-backendIngredientToIngredient backendIngredient =
-    let
-        cat =
-            intToCategory backendIngredient.category
-    in
-        case cat of
-            Just cat ->
-                Just
-                    { id = backendIngredient.id
-                    , name = backendIngredient.name
-                    , category = cat
-                    , selected = False
-                    }
-
-            Nothing ->
-                Nothing
-
-
-intToCategory : Int -> Maybe Category
-intToCategory num =
-    case num of
-        0 ->
-            Just Alcohol
-
-        1 ->
-            Just Mixer
-
-        2 ->
-            Just Other
-
-        _ ->
-            Nothing
 
 
 toggleIngredient : Ingredient -> Model -> Model
