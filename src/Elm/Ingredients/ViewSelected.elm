@@ -33,7 +33,7 @@ viewSelectedCategory cat model =
     in
         div [ class "left flex-auto flex flex-column flex-stretch" ]
             [ h2 [ class "h3" ]
-                [ div [ class ("inline-block m1 " ++ icon) ] []
+                [ i [ class ("m1 " ++ icon) ] []
                 , div [ class "inline-block" ] [ text name ]
                 ]
             , viewCategoryButtons cat model

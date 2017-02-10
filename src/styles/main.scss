@@ -4,13 +4,30 @@ $tan: #af9664;
 $gray: #9fb4c7;
 
 svg {
-  width: 100%;
+  width: 200px;
   max-height: 40vh;
   margin-bottom: 1px;
 
   rect.glass {
     stroke-width: 0;
     fill: $gray;
+  }
+}
+
+.drink-recipe {
+  color: white;
+  max-width: 250px;
+  margin: 10px;
+  text-transform: uppercase;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      text-transform: capitalize;
+      color: $gray;
+    }
   }
 }
 

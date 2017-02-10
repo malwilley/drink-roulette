@@ -69,7 +69,7 @@ colorDecoder =
 
 stringToHexDecoder : String -> Decoder String
 stringToHexDecoder str =
-    succeed (Maybe.withDefault "#000" <| colorNameToHex str)
+    succeed (Maybe.withDefault "#777" <| colorNameToHex str)
 
 
 colorNameToHex : String -> Maybe String

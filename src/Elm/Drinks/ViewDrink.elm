@@ -45,8 +45,28 @@ drinkDim =
 
 viewDrink : Drink -> Html Msg
 viewDrink drink =
-    svg [ viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
-        (List.append (drawGlass drinkDim) (drawIngredients drinkDim drink.ingredients []))
+    div [ class "flex justify-center items-center" ]
+        [ svg [ viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
+            (List.append (drawGlass drinkDim) (drawIngredients drinkDim drink.ingredients []))
+        , viewDrinkRecipe drink
+        ]
+
+
+viewDrinkRecipe : Drink -> Html Msg
+viewDrinkRecipe drink =
+    div [ class "drink-recipe flex-none" ]
+        [ h3 [] [ Html.text drink.name ]
+        , ul [] (List.map toRecipeListItem drink.ingredients)
+        ]
+
+
+toRecipeListItem : IngredientProportion -> Html Msg
+toRecipeListItem ip =
+    let
+        amount =
+            toString ip.proportion
+    in
+        li [] [ Html.text (amount ++ " " ++ ip.ingredient.name) ]
 
 
 drawGlass : DrinkDimensions -> List (Svg Msg)
