@@ -3,20 +3,21 @@ module Drinks.ViewDrink exposing (..)
 import Html exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
+import Common.Models exposing (..)
 import Drinks.Models exposing (..)
 import Drinks.Messages exposing (Msg(..))
 
 
 view : Model -> Html Msg
 view model =
-    case model of
-        NoDrink ->
+    case model.currentDrink of
+        Nothing ->
             div [] [ Html.text "?" ]
 
-        Success drink ->
+        Just (Succeed drink) ->
             viewDrink drink
 
-        Error msg ->
+        _ ->
             div []
                 [ h1 [ class "red" ] []
                 ]

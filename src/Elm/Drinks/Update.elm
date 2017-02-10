@@ -1,5 +1,6 @@
 module Drinks.Update exposing (..)
 
+import Common.Models exposing (..)
 import Ingredients.Models exposing (IngredientId)
 import Drinks.Models exposing (..)
 import Drinks.Messages exposing (Msg(..))
@@ -10,10 +11,36 @@ update : Msg -> Model -> List IngredientId -> ( Model, Cmd Msg )
 update msg model ids =
     case msg of
         MakeDrink ->
-            ( model, getDrink ids )
+            ( model
+                |> addPreviousDrink model.currentDrink
+                |> setCurrentDrink (Just Fetching)
+            , getDrink ids
+            )
 
         FetchDrinkDone (Ok drink) ->
-            ( Success drink, Cmd.none )
+            ( model |> setCurrentDrink (Just (Succeed drink)), Cmd.none )
 
         FetchDrinkDone (Err _) ->
-            ( Error "Error retrieving drink info from server", Cmd.none )
+            ( model |> setCurrentDrink (Just (Fail "Error retrieving drink info from server"))
+            , Cmd.none
+            )
+
+
+setCurrentDrink : Maybe (HttpResult Drink) -> Model -> Model
+setCurrentDrink drink model =
+    { model | currentDrink = drink }
+
+
+addPreviousDrink : Maybe (HttpResult Drink) -> Model -> Model
+addPreviousDrink drink model =
+    case drink of
+        Just result ->
+            case result of
+                Succeed thing ->
+                    { model | previousDrinks = thing :: model.previousDrinks }
+
+                _ ->
+                    model
+
+        _ ->
+            model

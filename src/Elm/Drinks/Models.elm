@@ -1,17 +1,20 @@
 module Drinks.Models exposing (..)
 
+import Common.Models exposing (..)
 import Ingredients.Models exposing (Ingredient)
 
 
 init : Model
 init =
-    NoDrink
+    { currentDrink = Nothing
+    , previousDrinks = []
+    }
 
 
-type Model
-    = Success Drink
-    | Error String
-    | NoDrink
+type alias Model =
+    { currentDrink : Maybe (HttpResult Drink)
+    , previousDrinks : List Drink
+    }
 
 
 type DrinkSize
