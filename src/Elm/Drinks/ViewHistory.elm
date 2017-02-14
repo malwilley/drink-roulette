@@ -9,7 +9,7 @@ import Drinks.ViewDrinkSvg
 
 view : Model -> Html Msg
 view model =
-    section [ class "flex-auto flex flex-column flex-stretch" ]
+    section [ class "flex-auto flex flex-column flex-stretch mb2" ]
         [ h2 [ class "my2 h3" ]
             [ i [ class "fa fa-glass inline-block m1" ] []
             , div [ class "inline-block" ] [ text "Previous Drinks" ]
@@ -21,7 +21,7 @@ view model =
 
 previousDrinkItem : Drink -> Html Msg
 previousDrinkItem drink =
-    div [ class "flex" ]
+    div [ class "flex flex-none" ]
         [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink ]
         , div [ class "flex flex-column justify-center" ]
             [ h4 [ class "prevdrink-title" ] [ text drink.name ]

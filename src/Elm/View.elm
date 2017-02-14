@@ -13,10 +13,10 @@ import Drinks.ViewCreate
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ header [ class "flex flex-column", style [ ( "height", "100vh" ), ( "min-height", "500px" ), ( "background", "#111" ) ] ]
+    div [ class "flex justify-center" ]
+        [ div [ class "flex flex-column items-stretch", style [ ( "width", "100%" ), ( "max-width", "1200px" ) ] ]
             [ h1 [ class "white p1 center m1 bold" ] [ text "Drink Roulette" ]
-            , div [ class "flex flex-auto" ]
+            , div [ class "main-stage flex" ]
                 [ div [ class "col col-4 center px3 flex flex-column flex-stretch" ]
                     [ Html.map IngredientsMsg (viewSelected model.ingredients)
                     ]
@@ -29,5 +29,4 @@ view model =
                 ]
             , Html.map DrinkMsg (Drinks.ViewCreate.view model.currentDrink)
             ]
-        , section [ class "white", style [ ( "background", "#302d2c" ), ( "height", "80px" ) ] ] [ text "other info" ]
         ]

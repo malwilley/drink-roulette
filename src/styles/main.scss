@@ -3,6 +3,27 @@ $near-black-light: lighten($near-black, 10%);
 $tan: #af9664;
 $gray: #9fb4c7;
 
+#main {
+  background-color: $near-black;
+  min-height: 100vh;
+}
+
+.bg-tan {
+  background-color: $tan;
+}
+
+.bg-near-black {
+  background-color: $near-black;
+}
+
+.tan {
+  color: $tan;
+}
+
+.main-stage {
+  height: 600px;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -20,8 +41,7 @@ rect.glass {
 }
 
 .current-drink-container {
-  width: 160px;
-  margin-bottom: 1px;
+  width: 120px;
 }
 
 .drink-recipe {
@@ -54,16 +74,16 @@ rect.glass {
   text-align: left;
 }
 
-
-
 li.prevdrink-ingredient, li.prevdrink-ingredient-extra {
   font-size: 0.6em;
   color: $gray;
   margin: 0;
+  text-transform: capitalize;
 }
 
 li.prevdrink-ingredient-extra {
   color: $tan;
+  text-transform: none;
 }
 
 .selected-ingredient {
@@ -91,7 +111,6 @@ li.prevdrink-ingredient-extra {
   border-bottom: 1px solid $near-black;
   background: white;
   width: 100%;
-  border-radius: 4px 4px 0px 0px;
 
   .fa-search {
     //color: $tan;

@@ -20,7 +20,7 @@ viewSearchBar model =
 
 inputView : Model -> Html Msg
 inputView model =
-    div [ class "search-bar flex flex-center flex-stretch" ]
+    div [ class "search-bar flex flex-center flex-stretch mt2 rounded-top" ]
         [ getSearchIcon model
         , input
             [ class "flex-auto"
