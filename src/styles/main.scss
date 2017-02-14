@@ -3,21 +3,31 @@ $near-black-light: lighten($near-black, 10%);
 $tan: #af9664;
 $gray: #9fb4c7;
 
-svg {
-  width: 200px;
-  max-height: 40vh;
-  margin-bottom: 1px;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
 
-  rect.glass {
-    stroke-width: 0;
-    fill: $gray;
-  }
+svg.drink-svg {
+  width: 100%;
+}
+
+rect.glass {
+  stroke-width: 0;
+  fill: $gray;
+}
+
+.current-drink-container {
+  width: 160px;
+  margin-bottom: 1px;
 }
 
 .drink-recipe {
   color: white;
   max-width: 250px;
-  margin: 10px;
+  margin: 14px;
   text-transform: uppercase;
 
   ul {
@@ -29,6 +39,31 @@ svg {
       color: $gray;
     }
   }
+}
+
+.prevdrink-icon-container {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+.prevdrink-title {
+  font-size: 0.8em;
+  margin: 0;
+  color: white;
+  text-align: left;
+}
+
+
+
+li.prevdrink-ingredient, li.prevdrink-ingredient-extra {
+  font-size: 0.6em;
+  color: $gray;
+  margin: 0;
+}
+
+li.prevdrink-ingredient-extra {
+  color: $tan;
 }
 
 .selected-ingredient {
@@ -78,7 +113,6 @@ ul.search-results-container {
   background: white;
   margin: 0;
   padding: 0;
-  list-style: none;
   border-radius: 0px 0px 4px 4px;
 
   li {
