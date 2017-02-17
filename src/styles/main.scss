@@ -88,10 +88,11 @@ li.prevdrink-ingredient-extra {
 
 .selected-ingredient {
   color: white;
+  min-width: 60px;
   font-size: 1em;
-  display: inline-block;
+  font-weight: normal;
   text-transform: capitalize;
-  cursor: pointer;
+  border-radius: 12px;
 }
 
 .btn-makedrink {

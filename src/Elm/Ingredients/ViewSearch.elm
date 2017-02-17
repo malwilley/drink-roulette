@@ -2,8 +2,8 @@ module Ingredients.ViewSearch exposing (viewSearchBar)
 
 import String
 import Html exposing (..)
-import Html.Attributes exposing (class, style, type_, placeholder, value)
-import Html.Events exposing (on, onInput, onClick, onFocus, onBlur, keyCode)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Json.Decode
 import Common.Models exposing (..)
 import Ingredients.Models exposing (..)
@@ -83,7 +83,7 @@ resultItemView : Ingredient -> Html Msg
 resultItemView ingredient =
     li
         [ class "flex flex-center"
-        , onClick (SearchResultClicked ingredient)
+        , onMouseDown (SearchResultClicked ingredient)
         ]
         [ div [ class "search-icon-container fa fa-glass p2" ] []
         , div [ class "search-text flex-auto" ] [ text ingredient.name ]

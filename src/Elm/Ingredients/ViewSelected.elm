@@ -31,7 +31,7 @@ viewSelectedCategory cat model =
                 Other ->
                     ( "Other", "fa fa-glass" )
     in
-        div [ class "left flex-auto flex flex-column flex-stretch" ]
+        div [ class "left flex-auto flex flex-column flex-stretch", style [ ( "flex-basis", "40px" ) ] ]
             [ h2 [ class "h3" ]
                 [ i [ class ("m1 " ++ icon) ] []
                 , div [ class "inline-block" ] [ text name ]
@@ -60,9 +60,11 @@ viewCategoryButtons cat model =
 
 selectedButton : Ingredient -> Html Msg
 selectedButton ingredient =
-    div
-        [ class "selected-ingredient m1 p1 white rounded"
-        , style [ ( "background", ingredient.color ) ]
+    button
+        [ class "btn selected-ingredient m1 p1 white flex justify-between"
+        , style [ ( "background-color", ingredient.color ) ]
         , onClick (SelectedIngredientClicked ingredient)
         ]
-        [ text ingredient.name ]
+        [ div [ class "" ] [ text ingredient.name ]
+        , i [ class "fa fa-times-circle ml1" ] []
+        ]
