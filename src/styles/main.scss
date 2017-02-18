@@ -96,14 +96,22 @@ li.prevdrink-ingredient-extra {
 }
 
 .btn-makedrink {
-  background: $near-black-light;
+  position: relative;
+  top: 0px;
+  padding: 0.8em 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: $brown;
+  color: lighten($brown, 40%);
+  text-shadow: 0px 2px 0px darken($brown, 10%);
   border-radius: 4px;
-  padding: 1em;
-  div {
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-    text-transform: uppercase;
+  border: none;
+  box-shadow: 0px 6px 0px darken($brown, 10%);
+  transition: 200ms ease;
+
+  &:active {
+    top: 6px;
+    box-shadow: none;
   }
 }
 

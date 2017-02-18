@@ -11,8 +11,6 @@ view : Model -> Html Msg
 view model =
     div
         [ class "flex items-center flex-none rounded-top"
-        , style [ ( "height", "15vh" ), ( "background", "#af9664" ), ( "justify-content", "center" ) ]
+        , style [ ( "height", "120px" ), ( "background", "#af9664" ), ( "justify-content", "center" ) ]
         ]
-        [ div [ class "h3 btn btn-makedrink", onClick MakeDrink ]
-            [ div [ style [ ( "display", "inline-block" ), ( "padding-right", "10px" ) ] ] [ text "create  " ], div [ class "fa fa-cogs" ] [] ]
-        ]
+        [ div [ class "h3 btn btn-makedrink", onClick MakeDrink ] [ text "create" ] ]
