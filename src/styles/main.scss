@@ -1,7 +1,20 @@
 $near-black: #111;
 $near-black-light: lighten($near-black, 10%);
 $tan: #af9664;
+$brown: #433d3a;
 $gray: #9fb4c7;
+
+body {
+
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+
+h2, h3 {
+  letter-spacing: .2rem;
+}
 
 #main {
   background-color: $near-black;
@@ -21,7 +34,7 @@ $gray: #9fb4c7;
 }
 
 .main-stage {
-  height: 600px;
+  height: 650px;
 }
 
 ul {
@@ -40,6 +53,13 @@ rect.glass {
   fill: $gray;
 }
 
+.no-drink {
+  text-align: center;
+  color: #222;
+  font-size: 20em;
+  font-weight: bold;
+}
+
 .current-drink-container {
   width: 120px;
 }
@@ -48,7 +68,7 @@ rect.glass {
   color: white;
   max-width: 250px;
   margin: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   ul {
     list-style: none;
@@ -102,7 +122,7 @@ li.prevdrink-ingredient-extra {
   text-transform: uppercase;
   font-weight: bold;
   background: $brown;
-  color: lighten($brown, 40%);
+  color: lighten($brown, 60%);
   text-shadow: 0px 2px 0px darken($brown, 10%);
   border-radius: 4px;
   border: none;

@@ -12,7 +12,7 @@ view : Model -> Html Msg
 view model =
     case model.currentDrink of
         Nothing ->
-            div [] [ Html.text "?" ]
+            div [ class "no-drink" ] [ Html.text "?" ]
 
         Just (Succeed drink) ->
             viewDrink drink
@@ -26,7 +26,8 @@ view model =
 viewDrink : Drink -> Html Msg
 viewDrink drink =
     div [ class "flex justify-center items-center" ]
-        [ div [ class "current-drink-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink ]
+        [ div [ class "current-drink-container" ]
+            [ Drinks.ViewDrinkSvg.viewSvg drink ]
         , viewDrinkRecipe drink
         ]
 
@@ -34,8 +35,8 @@ viewDrink drink =
 viewDrinkRecipe : Drink -> Html Msg
 viewDrinkRecipe drink =
     div [ class "drink-recipe flex-none" ]
-        [ h3 [] [ Html.text drink.name ]
-        , ul [] (List.map toRecipeListItem drink.ingredients)
+        [ h4 [ class "h3" ] [ Html.text drink.name ]
+        , ul [ class "h5" ] (List.map toRecipeListItem drink.ingredients)
         ]
 
 
