@@ -2,6 +2,7 @@ module Drinks.ViewHistory exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Common.Icons
 import Drinks.Models exposing (..)
 import Drinks.Messages exposing (Msg(..))
 import Drinks.ViewDrinkSvg
@@ -10,9 +11,9 @@ import Drinks.ViewDrinkSvg
 view : Model -> Html Msg
 view model =
     section [ class "flex-auto flex flex-column flex-stretch mb2" ]
-        [ h2 [ class "my2 h3" ]
-            [ i [ class "fa fa-glass inline-block m1" ] []
-            , div [ class "inline-block" ] [ text "Previous Drinks" ]
+        [ h2 [ class "my2 h3 flex items-center flex-none" ]
+            [ Common.Icons.history "cat-icon fill-white"
+            , div [] [ text "drink history" ]
             ]
         , div [ class "flex flex-column flex-stretch flex-auto overflow-auto" ]
             (List.map previousDrinkItem model.previousDrinks)

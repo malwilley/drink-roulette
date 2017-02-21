@@ -1,9 +1,10 @@
 module Ingredients.ViewSelected exposing (viewSelected)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, style)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Common.Models exposing (..)
+import Common.Icons
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (..)
 
@@ -23,18 +24,18 @@ viewSelectedCategory cat model =
         ( name, icon ) =
             case cat of
                 Alcohol ->
-                    ( "Alcohol", "fa fa-glass" )
+                    ( "Alcohol", Common.Icons.bottle )
 
                 Mixer ->
-                    ( "Mixers", "fa fa-glass" )
+                    ( "Mixers", Common.Icons.can )
 
                 Other ->
-                    ( "Other", "fa fa-glass" )
+                    ( "Other", Common.Icons.lemon )
     in
         div [ class "left flex-auto flex flex-column flex-stretch", style [ ( "flex-basis", "40px" ) ] ]
-            [ h2 [ class "h3" ]
-                [ i [ class ("m1 " ++ icon) ] []
-                , div [ class "inline-block" ] [ text name ]
+            [ h2 [ class "h3 flex items-center" ]
+                [ icon "cat-icon fill-white"
+                , div [] [ text name ]
                 ]
             , viewCategoryButtons cat model
             ]

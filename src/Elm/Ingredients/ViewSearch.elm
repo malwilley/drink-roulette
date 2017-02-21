@@ -4,8 +4,10 @@ import String
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Svg exposing (Svg)
 import Json.Decode
 import Common.Models exposing (..)
+import Common.Icons
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
 
@@ -20,7 +22,7 @@ viewSearchBar model =
 
 inputView : Model -> Html Msg
 inputView model =
-    div [ class "search-bar flex flex-center flex-stretch mt2 rounded-top" ]
+    div [ class "search-bar flex items-stretch mt2 rounded-top" ]
         [ getSearchIcon model
         , input
             [ class "flex-auto"
@@ -40,13 +42,13 @@ getSearchIcon : Model -> Html Msg
 getSearchIcon model =
     case model.ingredients of
         Fetching ->
-            div [ class "search-icon-container p2 fa fa-spin fa-circle-o-notch" ] []
+            div [ class "search-icon-container fa fa-spin fa-circle-o-notch" ] []
 
         Succeed ingedients ->
-            div [ class "search-icon-container p2 fa fa-search" ] []
+            div [ class "search-icon-container fa fa-search" ] []
 
         Fail msg ->
-            div [ class "search-icon-container p2 fa fa-refresh" ] []
+            div [ class "search-icon-container fa fa-refresh" ] []
 
 
 resultsView : Model -> Html Msg
@@ -85,9 +87,22 @@ resultItemView ingredient =
         [ class "flex flex-center"
         , onMouseDown (SearchResultClicked ingredient)
         ]
-        [ div [ class "search-icon-container fa fa-glass p2" ] []
+        [ div [ class "search-icon-container" ] [ (categoryIcon ingredient.category) "cat-icon fill-black" ]
         , div [ class "search-text flex-auto" ] [ text ingredient.name ]
         ]
+
+
+categoryIcon : Category -> String -> Svg Msg
+categoryIcon cat class =
+    case cat of
+        Alcohol ->
+            Common.Icons.bottle class
+
+        Mixer ->
+            Common.Icons.can class
+
+        Other ->
+            Common.Icons.lemon class
 
 
 onKeyDown : (Int -> Msg) -> Attribute Msg
