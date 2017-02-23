@@ -1,5 +1,6 @@
 'use strict'
 
+require('normalize.css/normalize.css');
 require('ace-css/css/ace.css');
 require('font-awesome/css/font-awesome.css');
 
