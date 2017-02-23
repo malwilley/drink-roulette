@@ -8,6 +8,10 @@ body {
 
 }
 
+button, .btn {
+  user-select: none;
+}
+
 h1, h2, h3 {
   text-transform: uppercase;
 }
@@ -138,7 +142,7 @@ li.prevdrink-ingredient-extra {
 
 .btn-makedrink {
   position: relative;
-  top: 0px;
+  top: 0;
   padding: 0.8em 1em;
   text-transform: uppercase;
   font-weight: bold;
@@ -146,13 +150,17 @@ li.prevdrink-ingredient-extra {
   color: lighten($brown, 60%);
   text-shadow: 0px 2px 0px darken($brown, 10%);
   border-radius: 4px;
-  border: none;
   box-shadow: 0px 6px 0px darken($brown, 10%);
   transition: 200ms ease;
 
+  &:hover {
+    top: -2px;
+    box-shadow: 0px 8px 0px darken($brown, 10%);
+  }
+
   &:active {
-    top: 6px;
-    box-shadow: none;
+    top: 5px;
+    box-shadow: 0px 1px 0px darken($brown, 10%);
   }
 }
 

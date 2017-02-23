@@ -33,7 +33,7 @@ viewSelectedCategory cat model =
                     ( "Other", Common.Icons.lemon )
     in
         div [ class "left flex-auto flex flex-column flex-stretch", style [ ( "flex-basis", "40px" ) ] ]
-            [ h2 [ class "h3 flex items-center" ]
+            [ h2 [ class "h3 flex items-center flex-none" ]
                 [ icon "cat-icon fill-white"
                 , div [] [ text name ]
                 ]
