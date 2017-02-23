@@ -8,12 +8,13 @@ import Drinks.Messages exposing (Msg(..))
 
 
 type alias DrinkDimensions =
-    { width : Int
-    , height : Int
-    , thickness : Int
-    , base : Int
-    , room : Int
-    , pad : Int
+    { width : Float
+    , height : Float
+    , thickness : Float
+    , base : Float
+    , room : Float
+    , pad : Float
+    , animationTime : Float
     }
 
 
@@ -25,6 +26,7 @@ drinkDim =
     , base = 15
     , room = 8
     , pad = 2
+    , animationTime = 1.2
     }
 
 
@@ -80,25 +82,54 @@ drawIngredients dim ips svgs =
 drawIngredient : DrinkDimensions -> Float -> IngredientProportion -> Svg Msg
 drawIngredient dim fracUsed ip =
     let
-        ( usableHeight, ingHeight ) =
-            ( getUsableHeight dim, getIngredientHeight dim ip.proportion )
+        ( posY, ingHeight ) =
+            ( calcPositionY dim fracUsed ip
+            , calcIngredientHeight dim ip
+            )
     in
         rect
             [ x (toString (dim.thickness + dim.pad))
-            , y (toString (toFloat usableHeight * (1 - fracUsed) + toFloat dim.room - ingHeight))
+            , y (toString posY)
             , width (toString (dim.width - (2 * (dim.thickness + dim.pad))))
-            , height (toString (ingHeight))
+            , height "0"
             , strokeWidth "0"
             , fill ip.ingredient.color
             ]
-            []
+            [ animate
+                [ attributeName "height"
+                , from "0"
+                , to (toString ingHeight)
+                , dur (toString <| dim.animationTime * ip.proportion)
+                , begin (toString <| dim.animationTime * fracUsed)
+                , fill "freeze"
+                ]
+                []
+            , animate
+                [ attributeName "y"
+                , from (toString <| posY + ingHeight)
+                , to (toString posY)
+                , dur (toString <| dim.animationTime * ip.proportion)
+                , begin (toString <| dim.animationTime * fracUsed)
+                , fill "freeze"
+                ]
+                []
+            ]
 
 
-getUsableHeight : DrinkDimensions -> Int
-getUsableHeight dim =
+calcPositionY : DrinkDimensions -> Float -> IngredientProportion -> Float
+calcPositionY dim fracUsed ip =
+    let
+        ( usableHeight, ingHeight ) =
+            ( calcUsableHeight dim, calcIngredientHeight dim ip )
+    in
+        usableHeight * (1 - fracUsed) + dim.room - ingHeight
+
+
+calcIngredientHeight : DrinkDimensions -> IngredientProportion -> Float
+calcIngredientHeight dim ip =
+    (calcUsableHeight dim) * ip.proportion - dim.pad
+
+
+calcUsableHeight : DrinkDimensions -> Float
+calcUsableHeight dim =
     dim.height - dim.base - dim.pad - dim.room
-
-
-getIngredientHeight : DrinkDimensions -> Float -> Float
-getIngredientHeight dim proportion =
-    toFloat (getUsableHeight dim) * proportion - (toFloat dim.pad)
