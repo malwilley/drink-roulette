@@ -1,0 +1,36 @@
+.no-drink {
+  text-align: center;
+  color: #222;
+  font-size: 20em;
+  font-weight: bold;
+}
+
+.current-drink-container {
+  width: 120px;
+}
+
+.drink-recipe {
+  color: white;
+  max-width: 250px;
+  margin: 14px;
+  text-transform: capitalize;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      text-transform: capitalize;
+      color: $gray;
+    }
+  }
+}
+
+svg.drink-svg {
+  width: 100%;
+}
+
+rect.glass {
+  stroke-width: 0;
+  fill: $gray;
+}

@@ -1,0 +1,19 @@
+#main {
+  background-color: $near-black;
+  min-height: 100vh;
+}
+
+.main-stage {
+  height: 650px;
+}
+
+button, .btn {
+  user-select: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
