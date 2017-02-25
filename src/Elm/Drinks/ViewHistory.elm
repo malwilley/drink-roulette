@@ -23,7 +23,7 @@ view model =
 previousDrinkItem : Drink -> Html Msg
 previousDrinkItem drink =
     div [ class "flex flex-none" ]
-        [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink ]
+        [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink False ]
         , div [ class "flex flex-column justify-center" ]
             [ h4 [ class "prevdrink-title" ] [ text drink.name ]
             , ul []

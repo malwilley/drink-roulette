@@ -27,7 +27,7 @@ viewDrink : Drink -> Html Msg
 viewDrink drink =
     div [ class "flex justify-center items-center" ]
         [ div [ class "current-drink-container" ]
-            [ Drinks.ViewDrinkSvg.viewSvg drink ]
+            [ Drinks.ViewDrinkSvg.viewSvg drink True ]
         , viewDrinkRecipe drink
         ]
 

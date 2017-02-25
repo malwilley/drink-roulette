@@ -30,10 +30,10 @@ drinkDim =
     }
 
 
-viewSvg : Drink -> Html Msg
-viewSvg drink =
+viewSvg : Drink -> Bool -> Html Msg
+viewSvg drink animated =
     svg [ class "drink-svg", viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
-        (List.append (drawGlass drinkDim) (drawIngredients drinkDim drink.ingredients []))
+        ((drawGlass drinkDim) ++ (drawIngredients drinkDim drink.ingredients [] animated))
 
 
 drawGlass : DrinkDimensions -> List (Svg Msg)
@@ -65,8 +65,8 @@ drawGlass dim =
     ]
 
 
-drawIngredients : DrinkDimensions -> List IngredientProportion -> List (Svg Msg) -> List (Svg Msg)
-drawIngredients dim ips svgs =
+drawIngredients : DrinkDimensions -> List IngredientProportion -> List (Svg Msg) -> Bool -> List (Svg Msg)
+drawIngredients dim ips svgs animated =
     case ips of
         [] ->
             svgs
@@ -74,13 +74,13 @@ drawIngredients dim ips svgs =
         hd :: tl ->
             let
                 svg =
-                    drawIngredient dim (1 - (List.sum (List.map (\ip -> ip.proportion) ips))) hd
+                    drawIngredient dim (1 - (List.sum <| List.map (\ip -> ip.proportion) ips)) hd animated
             in
-                drawIngredients dim tl (svg :: svgs)
+                drawIngredients dim tl (svg :: svgs) animated
 
 
-drawIngredient : DrinkDimensions -> Float -> IngredientProportion -> Svg Msg
-drawIngredient dim fracUsed ip =
+drawIngredient : DrinkDimensions -> Float -> IngredientProportion -> Bool -> Svg Msg
+drawIngredient dim fracUsed ip animated =
     let
         ( posY, ingHeight ) =
             ( calcPositionY dim fracUsed ip
@@ -91,29 +91,42 @@ drawIngredient dim fracUsed ip =
             [ x (toString (dim.thickness + dim.pad))
             , y (toString posY)
             , width (toString (dim.width - (2 * (dim.thickness + dim.pad))))
-            , height "0"
+            , height
+                (case animated of
+                    True ->
+                        "0"
+
+                    False ->
+                        toString ingHeight
+                )
             , strokeWidth "0"
             , fill ip.ingredient.color
             ]
-            [ animate
-                [ attributeName "height"
-                , from "0"
-                , to (toString ingHeight)
-                , dur (toString <| dim.animationTime * ip.proportion)
-                , begin (toString <| dim.animationTime * fracUsed)
-                , fill "freeze"
-                ]
-                []
-            , animate
-                [ attributeName "y"
-                , from (toString <| posY + ingHeight)
-                , to (toString posY)
-                , dur (toString <| dim.animationTime * ip.proportion)
-                , begin (toString <| dim.animationTime * fracUsed)
-                , fill "freeze"
-                ]
-                []
-            ]
+            (case animated of
+                True ->
+                    [ animate
+                        [ attributeName "height"
+                        , from "0"
+                        , to (toString ingHeight)
+                        , dur (toString <| dim.animationTime * ip.proportion)
+                        , begin (toString <| dim.animationTime * fracUsed)
+                        , fill "freeze"
+                        ]
+                        []
+                    , animate
+                        [ attributeName "y"
+                        , from (toString <| posY + ingHeight)
+                        , to (toString posY)
+                        , dur (toString <| dim.animationTime * ip.proportion)
+                        , begin (toString <| dim.animationTime * fracUsed)
+                        , fill "freeze"
+                        ]
+                        []
+                    ]
+
+                False ->
+                    []
+            )
 
 
 calcPositionY : DrinkDimensions -> Float -> IngredientProportion -> Float
