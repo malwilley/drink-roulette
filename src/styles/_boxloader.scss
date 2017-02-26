@@ -1,0 +1,37 @@
+$size: 24px;
+$speed: 1.4s;
+$loader-color: $tan;
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to {  transform: rotate(360deg); }
+}
+
+.box-loader {
+  position: relative;
+  margin: -#{$size/2} 0 0 -#{$size/2};
+  border: #{$size*0.1} solid $loader-color;
+  width: $size;
+  height: $size;
+  overflow: hidden;
+  animation: spin $speed linear infinite reverse;
+  filter: url(#goo);
+  // hides a 1px render error in some browsers that
+  // happens with transformed children inside an
+  // overflow hidden parent. only a real issue
+  // without the filter
+  box-shadow: 0 0 0 1px $loader-color inset;
+
+  &:before {
+    position: absolute;
+    content: "";
+    animation: spin $speed cubic-bezier(.59,.25,.4,.69) infinite;
+    background: $loader-color;
+    transform-origin: top center;
+    border-radius: 50%;
+    width: 150%;
+    height: 150%;
+    top: 50%;
+    left: -12.5%;
+  }
+}

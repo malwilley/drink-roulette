@@ -17,6 +17,9 @@ view model =
         Just (Succeed drink) ->
             viewDrink drink
 
+        Just Fetching ->
+            div [] []
+
         _ ->
             div []
                 [ h1 [ class "red" ] []

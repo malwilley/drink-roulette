@@ -1,6 +1,37 @@
+$popup-height: 150px;
+$popup-speed: 0.4s;
+
+.bartop {
+  position: relative; // for loader-container
+  height: 120px;
+  background: $tan;
+}
+
+.loader-container {
+  position: absolute;
+  left: 50%;
+}
+
+.popup {
+  transform: translateY(-$popup-height);
+  visibility: visible;
+  transition:
+    visibility 0s linear,
+    transform $popup-speed ease-out;
+}
+
+.popdown {
+  transform: translateY(0);
+  visibility: collapse;
+  transition:
+    transform $popup-speed ease-in,
+    visibility 0s linear $popup-speed;
+}
+
 .btn-makedrink {
   position: relative;
   top: 0;
+  z-index: 10;
   padding: 0.8em 1em;
   text-transform: uppercase;
   font-weight: bold;
