@@ -45,7 +45,7 @@ viewCategoryButtons : Category -> Model -> Html Msg
 viewCategoryButtons cat model =
     case model.ingredients of
         Succeed ingredients ->
-            div [ class "flex flex-justify flex-wrap overflow-auto" ]
+            div [ class "flex flex-wrap justify-start" ]
                 (ingredients
                     |> List.filter (\i -> i.selected)
                     |> List.filter (\i -> i.category == cat)
@@ -62,10 +62,10 @@ viewCategoryButtons cat model =
 selectedButton : Ingredient -> Html Msg
 selectedButton ingredient =
     button
-        [ class "btn selected-ingredient m1 p1 white flex justify-between"
+        [ class "btn selected-ingredient flex justify-between items-center"
         , style [ ( "background-color", ingredient.color ) ]
         , onClick (SelectedIngredientClicked ingredient)
         ]
-        [ div [ class "" ] [ text ingredient.name ]
+        [ div [ class "selected-ingredient-text" ] [ text ingredient.name ]
         , i [ class "fa fa-times-circle ml1" ] []
         ]

@@ -14,10 +14,19 @@
 
 .selected-ingredient {
   color: white;
-  min-width: 60px;
-  font-size: 1em;
+  padding: 6px;
+  margin: 6px;
+  min-width: 50px;
+  font-size: 0.8em;
   font-weight: normal;
   text-transform: capitalize;
-  border-radius: 12px;
+  border-radius: 4px;
   animation: popin 100ms ease-out;
+}
+
+.selected-ingredient-text {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
