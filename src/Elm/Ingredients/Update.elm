@@ -87,16 +87,21 @@ setEditingState model =
 
 getSearchResults : List Ingredient -> Query -> List Ingredient
 getSearchResults options query =
-    case query of
-        "" ->
-            []
+    let
+        sanitizedQuery =
+            query
+                |> String.toLower
+    in
+        case sanitizedQuery of
+            "" ->
+                []
 
-        query ->
-            options
-                |> List.filter (\i -> Regex.contains (caseInsensitive (regex query)) i.name)
-                |> List.filter (\i -> not i.selected)
-                |> List.sortWith (sortByQuery query)
-                |> List.take 5
+            sanitizedQuery ->
+                options
+                    |> List.filter (\i -> String.contains sanitizedQuery (String.toLower i.name))
+                    |> List.filter (\i -> not i.selected)
+                    |> List.sortWith (sortByQuery sanitizedQuery)
+                    |> List.take 5
 
 
 sortByQuery : Query -> Ingredient -> Ingredient -> Order
