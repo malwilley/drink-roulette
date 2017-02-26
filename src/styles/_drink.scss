@@ -1,3 +1,29 @@
+@keyframes drinkslideon {
+  from {
+    transform: translateX(600px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes recipeslideup {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .no-drink {
   text-align: center;
   color: #222;
@@ -7,6 +33,7 @@
 
 .current-drink-container {
   width: 120px;
+  animation: drinkslideon 1s ease-out;
 }
 
 .drink-recipe {
@@ -14,6 +41,7 @@
   max-width: 250px;
   margin: 14px;
   text-transform: capitalize;
+  animation: recipeslideup 2s ease-out;
 
   ul {
     list-style: none;

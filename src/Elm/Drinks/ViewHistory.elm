@@ -3,6 +3,7 @@ module Drinks.ViewHistory exposing (view)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Icons
+import Common.Models exposing (..)
 import Drinks.Models exposing (..)
 import Drinks.Messages exposing (Msg(..))
 import Drinks.ViewDrinkSvg
@@ -23,7 +24,7 @@ view model =
 previousDrinkItem : Drink -> Html Msg
 previousDrinkItem drink =
     div [ class "flex flex-none" ]
-        [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink False ]
+        [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink Static ]
         , div [ class "flex flex-column justify-center" ]
             [ h4 [ class "prevdrink-title" ] [ text drink.name ]
             , ul []

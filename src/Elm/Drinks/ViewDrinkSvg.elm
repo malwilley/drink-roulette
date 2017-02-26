@@ -3,6 +3,7 @@ module Drinks.ViewDrinkSvg exposing (..)
 import Html exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
+import Common.Models exposing (..)
 import Drinks.Models exposing (..)
 import Drinks.Messages exposing (Msg(..))
 
@@ -30,10 +31,10 @@ drinkDim =
     }
 
 
-viewSvg : Drink -> Bool -> Html Msg
-viewSvg drink animated =
+viewSvg : Drink -> Animation -> Html Msg
+viewSvg drink animation =
     svg [ class "drink-svg", viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
-        ((drawGlass drinkDim) ++ (drawIngredients drinkDim drink.ingredients [] animated))
+        ((drawGlass drinkDim) ++ (drawIngredients drinkDim drink.ingredients [] animation))
 
 
 drawGlass : DrinkDimensions -> List (Svg Msg)
@@ -65,8 +66,8 @@ drawGlass dim =
     ]
 
 
-drawIngredients : DrinkDimensions -> List IngredientProportion -> List (Svg Msg) -> Bool -> List (Svg Msg)
-drawIngredients dim ips svgs animated =
+drawIngredients : DrinkDimensions -> List IngredientProportion -> List (Svg Msg) -> Animation -> List (Svg Msg)
+drawIngredients dim ips svgs animation =
     case ips of
         [] ->
             svgs
@@ -74,13 +75,13 @@ drawIngredients dim ips svgs animated =
         hd :: tl ->
             let
                 svg =
-                    drawIngredient dim (1 - (List.sum <| List.map (\ip -> ip.proportion) ips)) hd animated
+                    drawIngredient dim (1 - (List.sum <| List.map (\ip -> ip.proportion) ips)) hd animation
             in
-                drawIngredients dim tl (svg :: svgs) animated
+                drawIngredients dim tl (svg :: svgs) animation
 
 
-drawIngredient : DrinkDimensions -> Float -> IngredientProportion -> Bool -> Svg Msg
-drawIngredient dim fracUsed ip animated =
+drawIngredient : DrinkDimensions -> Float -> IngredientProportion -> Animation -> Svg Msg
+drawIngredient dim fracUsed ip animation =
     let
         ( posY, ingHeight ) =
             ( calcPositionY dim fracUsed ip
@@ -92,18 +93,18 @@ drawIngredient dim fracUsed ip animated =
             , y (toString posY)
             , width (toString (dim.width - (2 * (dim.thickness + dim.pad))))
             , height
-                (case animated of
-                    True ->
+                (case animation of
+                    Animated ->
                         "0"
 
-                    False ->
+                    Static ->
                         toString ingHeight
                 )
             , strokeWidth "0"
             , fill ip.ingredient.color
             ]
-            (case animated of
-                True ->
+            (case animation of
+                Animated ->
                     [ animate
                         [ attributeName "height"
                         , from "0"
@@ -124,7 +125,7 @@ drawIngredient dim fracUsed ip animated =
                         []
                     ]
 
-                False ->
+                Static ->
                     []
             )
 
