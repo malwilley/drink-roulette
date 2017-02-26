@@ -11,7 +11,7 @@ import Ingredients.Messages exposing (..)
 
 viewSelected : Model -> Html Msg
 viewSelected model =
-    section [ class "selected-ingredients flex-auto flex flex-column flex-stretch" ]
+    section [ class "selected-ingredients flex-auto flex flex-column flex-stretch overflow-auto" ]
         [ viewSelectedCategory Alcohol model
         , viewSelectedCategory Mixer model
         , viewSelectedCategory Other model
@@ -32,7 +32,7 @@ viewSelectedCategory cat model =
                 Other ->
                     ( "Other", Common.Icons.lemon )
     in
-        div [ class "left flex-auto flex flex-column flex-stretch", style [ ( "flex-basis", "40px" ) ] ]
+        div [ class "left flex-auto flex flex-column flex-stretch flex-none" ]
             [ h2 [ class "h3 flex items-center flex-none" ]
                 [ icon "cat-icon fill-white"
                 , div [] [ text name ]

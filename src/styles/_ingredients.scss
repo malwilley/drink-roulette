@@ -1,3 +1,12 @@
+@keyframes popin {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .cat-icon {
   width: 30px;
   margin-right: 4px;
@@ -10,4 +19,5 @@
   font-weight: normal;
   text-transform: capitalize;
   border-radius: 12px;
+  animation: popin 100ms ease-out;
 }
