@@ -94,15 +94,16 @@ resultItemView ingredient =
 
 categoryIcon : Category -> String -> Svg Msg
 categoryIcon cat class =
-    case cat of
-        Alcohol ->
-            Common.Icons.bottle class
+    class
+        |> case cat of
+            Alcohol ->
+                Common.Icons.bottle
 
-        Mixer ->
-            Common.Icons.can class
+            Mixer ->
+                Common.Icons.can
 
-        Other ->
-            Common.Icons.lemon class
+            Other ->
+                Common.Icons.lemon
 
 
 onKeyDown : (Int -> Msg) -> Attribute Msg
