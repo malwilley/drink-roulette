@@ -2,11 +2,6 @@ body {
   overflow-x: hidden;
 }
 
-#main {
-  background-color: $near-black;
-  min-height: 100vh;
-}
-
 button, .btn {
   user-select: none;
 }
@@ -20,4 +15,9 @@ ul {
   margin: 0;
   padding: 0;
   text-align: left;
+}
+
+#main {
+  background-color: $near-black;
+  min-height: 100vh;
 }

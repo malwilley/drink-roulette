@@ -9,3 +9,4 @@ type Msg
     | DrinkMsg Drinks.Messages.Msg
     | IngSidebarToggle
     | HistorySidebarToggle
+    | OverlayClick

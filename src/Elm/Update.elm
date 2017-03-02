@@ -37,6 +37,9 @@ update msg model =
             , Cmd.none
             )
 
+        OverlayClick ->
+            ( { model | sidebar = Closed }, Cmd.none )
+
 
 getSelectedIds : Ingredients.Models.Model -> List IngredientId
 getSelectedIds ingModel =

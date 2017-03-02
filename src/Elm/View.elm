@@ -24,6 +24,7 @@ view model =
             , model |> viewBartop
             , viewFooter
             ]
+        , model |> viewOverlay
         ]
 
 
@@ -71,6 +72,18 @@ viewFooter =
         ]
 
 
+viewOverlay : Model -> Html Msg
+viewOverlay model =
+    div
+        [ classList
+            [ ( "overlay", True )
+            , ( "overlay--show", model.sidebar /= Closed )
+            ]
+        , onClick OverlayClick
+        ]
+        []
+
+
 viewSidebarIcon : Sidebar -> (List (Svg.Attribute Msg) -> Svg Msg) -> Msg -> Model -> Svg Msg
 viewSidebarIcon sidebar icon msg model =
     icon
@@ -92,6 +105,6 @@ getSidebarClass sidebar model =
 getSidebarIconClass : Sidebar -> Model -> String
 getSidebarIconClass sidebar model =
     if model.sidebar == sidebar then
-        " z3 fill-black"
+        " z3"
     else
-        " fill-white"
+        ""
