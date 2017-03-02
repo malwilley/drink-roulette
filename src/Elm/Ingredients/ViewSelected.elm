@@ -34,7 +34,7 @@ viewSelectedCategory cat model =
                     ( "Other", Common.Icons.lemon )
     in
         div [ class "left flex-auto flex flex-column flex-stretch flex-none" ]
-            [ h2 [ class "h3 flex items-center flex-none" ]
+            [ h2 [ class "mb2 h3 tan border-bottom border-tan ls2 uppercase flex items-center flex-none" ]
                 [ icon [ Svg.Attributes.class "cat-icon fill-white" ]
                 , div [] [ text name ]
                 ]
