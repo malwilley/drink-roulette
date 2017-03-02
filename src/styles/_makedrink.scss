@@ -5,6 +5,7 @@ $popup-speed: 0.4s;
   position: relative; // for loader-container
   height: 120px;
   background: $tan;
+  z-index: 1;
 }
 
 .loader-container {
