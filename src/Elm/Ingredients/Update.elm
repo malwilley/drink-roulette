@@ -1,6 +1,5 @@
 module Ingredients.Update exposing (..)
 
-import Regex exposing (regex, caseInsensitive)
 import Common.Models exposing (..)
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))

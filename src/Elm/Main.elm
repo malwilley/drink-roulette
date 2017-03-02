@@ -14,6 +14,7 @@ init : ( Model, Cmd Msg )
 init =
     ( { ingredients = Ingredients.Models.init
       , currentDrink = Drinks.Models.init
+      , sidebar = Closed
       }
     , Cmd.map IngredientsMsg getAllIngredients
     )

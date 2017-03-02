@@ -1,0 +1,27 @@
+@media (max-width: 64em) {
+  .sidebar--left, .sidebar--right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 36em;
+    background: white;
+    transition: transform 250ms ease-out;
+    padding-top: 4em;
+    z-index: 2;
+  }
+
+  .sidebar--left {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar--right {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  .sidebar--show {
+    transform: translateX(0);
+  }
+}

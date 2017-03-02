@@ -3,6 +3,7 @@ module Ingredients.ViewSearch exposing (viewSearchBar)
 import String
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Svg.Attributes
 import Html.Events exposing (..)
 import Svg exposing (Svg)
 import Json.Decode
@@ -93,8 +94,8 @@ resultItemView ingredient =
 
 
 categoryIcon : Category -> String -> Svg Msg
-categoryIcon cat class =
-    class
+categoryIcon cat classStr =
+    [ Svg.Attributes.class classStr ]
         |> case cat of
             Alcohol ->
                 Common.Icons.bottle

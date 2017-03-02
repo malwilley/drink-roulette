@@ -7,3 +7,5 @@ import Drinks.Messages
 type Msg
     = IngredientsMsg Ingredients.Messages.Msg
     | DrinkMsg Drinks.Messages.Msg
+    | IngSidebarToggle
+    | HistorySidebarToggle

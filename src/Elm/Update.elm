@@ -25,6 +25,18 @@ update msg model =
             in
                 ( { model | currentDrink = newDrink }, Cmd.map DrinkMsg cmd )
 
+        IngSidebarToggle ->
+            ( model
+                |> updateToggledSidebarState Ingredients
+            , Cmd.none
+            )
+
+        HistorySidebarToggle ->
+            ( model
+                |> updateToggledSidebarState History
+            , Cmd.none
+            )
+
 
 getSelectedIds : Ingredients.Models.Model -> List IngredientId
 getSelectedIds ingModel =
@@ -39,3 +51,11 @@ getSelectedIds ingModel =
 
         Fail _ ->
             []
+
+
+updateToggledSidebarState : Sidebar -> Model -> Model
+updateToggledSidebarState toggledSidebar model =
+    if toggledSidebar == model.sidebar then
+        { model | sidebar = Closed }
+    else
+        { model | sidebar = toggledSidebar }

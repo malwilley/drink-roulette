@@ -2,6 +2,7 @@ module Ingredients.ViewSelected exposing (viewSelected)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Svg.Attributes
 import Html.Events exposing (onClick)
 import Common.Models exposing (..)
 import Common.Icons
@@ -34,7 +35,7 @@ viewSelectedCategory cat model =
     in
         div [ class "left flex-auto flex flex-column flex-stretch flex-none" ]
             [ h2 [ class "h3 flex items-center flex-none" ]
-                [ icon "cat-icon fill-white"
+                [ icon [ Svg.Attributes.class "cat-icon fill-white" ]
                 , div [] [ text name ]
                 ]
             , viewCategoryButtons cat model
