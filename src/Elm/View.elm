@@ -41,13 +41,13 @@ viewStage : Model -> Html Msg
 viewStage model =
     div [ class "flex items-stretch", style [ ( "height", "650px" ) ] ]
         [ div
-            [ class <| "center px3 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left " ++ (getSidebarClass Ingredients model) ]
+            [ class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left " ++ (getSidebarClass Ingredients model) ]
             [ Html.map IngredientsMsg (viewSelected model.ingredients) ]
         , div [ class "px3 flex flex-column items-stretch justify-between flex-auto flex-basis-0" ]
             [ Html.map IngredientsMsg (viewSearchBar model.ingredients)
             , Html.map DrinkMsg (Drinks.ViewDrink.view model.currentDrink)
             ]
-        , div [ class <| "center px3 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--right " ++ getSidebarClass History model ]
+        , div [ class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--right " ++ getSidebarClass History model ]
             [ Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink) ]
         ]
 

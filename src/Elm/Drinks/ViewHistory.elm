@@ -3,6 +3,7 @@ module Drinks.ViewHistory exposing (view)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Svg.Attributes
+import Svg.Events
 import Common.Icons
 import Common.Models exposing (..)
 import Drinks.Models exposing (..)
@@ -24,18 +25,24 @@ view model =
 
 previousDrinkItem : Drink -> Html Msg
 previousDrinkItem drink =
-    div [ class "flex flex-none" ]
-        [ div [ class "prevdrink-icon-container" ] [ Drinks.ViewDrinkSvg.viewSvg drink Static ]
-        , div [ class "flex flex-column justify-center" ]
-            [ h4 [ class "prevdrink-title" ] [ text drink.name ]
-            , ul []
-                (List.append
-                    (drink.ingredients
-                        |> List.map ingredientListItem
-                        |> List.take 1
+    div [ class "flex flex-none justify-between items-center height-4 p1" ]
+        [ div [ class "flex items-center" ]
+            [ div [ class "mr2", style [ ( "width", "20px" ) ] ] [ Drinks.ViewDrinkSvg.viewSvg drink Static ]
+            , div [ class "flex flex-column justify-center" ]
+                [ h4 [ class "prevdrink-title" ] [ text drink.name ]
+                , ul []
+                    (List.append
+                        (drink.ingredients
+                            |> List.map ingredientListItem
+                            |> List.take 1
+                        )
+                        [ (extraIngredientsListItem drink.ingredients) ]
                     )
-                    [ (extraIngredientsListItem drink.ingredients) ]
-                )
+                ]
+            ]
+        , Common.Icons.load
+            [ Svg.Attributes.class "clickable fill-tan width-2 height-2"
+            , Svg.Events.onClick <| LoadDrinkClick drink
             ]
         ]
 

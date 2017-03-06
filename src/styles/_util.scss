@@ -12,6 +12,10 @@
   fill: white;
 }
 
+.fill-tan {
+  fill: tan;
+}
+
 .tan {
   color: $tan;
 }
@@ -34,6 +38,14 @@
   width: 2rem;
 }
 
+.width3 {
+  width: 3rem;
+}
+
+.width-4 {
+  width: 4rem;
+}
+
 .height-1 {
   height: 1rem;
 }
@@ -49,6 +61,8 @@
 .height-4 {
   height: 4rem;
 }
+
+
 
 /* LAYOUT */
 

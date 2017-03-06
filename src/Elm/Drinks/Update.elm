@@ -17,6 +17,12 @@ update msg model ids =
             , getDrink ids
             )
 
+        LoadDrinkClick drink ->
+            ( model
+                |> setCurrentDrink (Just (Succeed drink))
+            , Cmd.none
+            )
+
         FetchDrinkDone (Ok drink) ->
             ( model |> setCurrentDrink (Just (Succeed drink)), Cmd.none )
 
