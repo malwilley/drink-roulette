@@ -2,6 +2,10 @@
   "name": "drink-roulette",
   "version": "1.0.0",
   "description": "Source code for the Drink Roulette frontend, written in Elm.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malwilley/drink-roulette"
+  },
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -20,7 +24,6 @@
     "node-sass": "^4.3.0",
     "normalize.css": "^5.0.0",
     "sass-loader": "^4.1.1",
-    "snapsvg": "^0.4.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
