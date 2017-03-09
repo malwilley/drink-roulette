@@ -12,7 +12,6 @@ update msg model ids =
     case msg of
         MakeDrink ->
             ( model
-                |> addPreviousDrink model.currentDrink
                 |> setCurrentDrink (Just Fetching)
             , getDrink ids
             )
@@ -24,7 +23,11 @@ update msg model ids =
             )
 
         FetchDrinkDone (Ok drink) ->
-            ( model |> setCurrentDrink (Just (Succeed drink)), Cmd.none )
+            ( model
+                |> setCurrentDrink (Just (Succeed drink))
+                |> addPreviousDrink (Just (Succeed drink))
+            , Cmd.none
+            )
 
         FetchDrinkDone (Err _) ->
             ( model |> setCurrentDrink (Just (Fail "Error retrieving drink info from server"))
