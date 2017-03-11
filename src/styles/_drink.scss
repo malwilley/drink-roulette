@@ -62,3 +62,9 @@ rect.glass {
   stroke-width: 0;
   fill: $gray;
 }
+
+@media (max-width: 64em) {
+  .no-drink {
+    font-size: 16em;
+  }
+}

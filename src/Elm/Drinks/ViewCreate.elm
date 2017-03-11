@@ -22,6 +22,6 @@ view model =
     in
         div
             [ class "bartop flex items-center flex-none rounded-top justify-center" ]
-            [ div [ class "h3 btn btn-makedrink", onClick MakeDrink ] [ text "create" ]
+            [ button [ class "h3 btn btn-makedrink", onClick MakeDrink ] [ text "create" ]
             , div [ class ("loader-container " ++ animateClass) ] [ Common.Icons.liquidBoxLoader ]
             ]

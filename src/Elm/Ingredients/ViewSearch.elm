@@ -85,7 +85,7 @@ resultItemsView results =
 resultItemView : Ingredient -> Html Msg
 resultItemView ingredient =
     li
-        [ class "flex flex-center"
+        [ class "clickable flex flex-center"
         , onMouseDown (SearchResultClicked ingredient)
         ]
         [ div [ class "search-icon-container" ] [ (categoryIcon ingredient.category) "cat-icon fill-black" ]

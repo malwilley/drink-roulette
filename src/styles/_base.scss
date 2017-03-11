@@ -4,6 +4,8 @@ body {
 
 button, .btn {
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 input {
@@ -20,4 +22,14 @@ ul {
 #main {
   background-color: $near-black;
   min-height: 100vh;
+}
+
+#stage {
+  height: 650px;
+}
+
+@media (max-width: 64em) {
+  #stage {
+    height: 400px;
+  }
 }

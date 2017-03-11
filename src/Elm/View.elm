@@ -39,7 +39,7 @@ viewHeader model =
 
 viewStage : Model -> Html Msg
 viewStage model =
-    div [ class "flex items-stretch", style [ ( "height", "650px" ) ] ]
+    div [ id "stage", class "flex items-stretch" ]
         [ div
             [ class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left " ++ (getSidebarClass Ingredients model) ]
             [ Html.map IngredientsMsg (viewSelected model.ingredients) ]
