@@ -27,7 +27,7 @@
 .no-drink {
   text-align: center;
   color: $near-black-light;
-  font-size: 20em;
+  font-size: 16rem;
   font-weight: bold;
 }
 
@@ -63,8 +63,8 @@ rect.glass {
   fill: $gray;
 }
 
-@media (max-width: 64em) {
+@media (max-width: 64rem) {
   .no-drink {
-    font-size: 16em;
+    font-size: 12rem;
   }
 }

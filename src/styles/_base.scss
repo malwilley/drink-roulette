@@ -1,5 +1,7 @@
 body {
   overflow-x: hidden;
+  background-color: $near-black;
+  min-height: 100vh;
 }
 
 button, .btn {
@@ -19,20 +21,16 @@ ul {
   text-align: left;
 }
 
-#main {
-  background-color: $near-black;
-  min-height: 100vh;
-}
-
-#stage {
-  height: 650px;
+#main-container {
+  max-width: 1200px;
+  height: 800px;
 }
 
 @media (max-width: 64em) {
   h1 {
     font-size: 28px
   }
-  #stage {
-    height: 400px;
+  #main-container {
+    height: 700px;
   }
 }

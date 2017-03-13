@@ -17,8 +17,8 @@ import Drinks.ViewCreate
 
 view : Model -> Html Msg
 view model =
-    div [ class "flex justify-center" ]
-        [ div [ class "flex flex-column items-stretch col col-12", style [ ( "max-width", "1200px" ) ] ]
+    div [ class ("flex justify-center" ++ (model |> getBodyClass)) ]
+        [ div [ id "main-container", class "flex flex-column items-stretch col col-12" ]
             [ model |> viewHeader
             , model |> viewStage
             , model |> viewBartop
@@ -39,7 +39,7 @@ viewHeader model =
 
 viewStage : Model -> Html Msg
 viewStage model =
-    div [ id "stage", class "flex items-stretch" ]
+    div [ id "stage", class "flex-auto flex items-stretch" ]
         [ div
             [ class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left "
                 ++ getSidebarClass Ingredients model ]
@@ -105,3 +105,11 @@ getSidebarClass sidebar model =
         " sidebar--show"
     else
         ""
+
+getBodyClass : Model -> String
+getBodyClass model =
+  case model.sidebar of
+    Closed ->
+      ""
+    _ ->
+      " height-full overflow-hidden"

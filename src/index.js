@@ -8,5 +8,5 @@ require('./styles/main.scss');
 require('./index.html');
 
 var Elm = require('./Elm/Main.elm');
-var mountNode = document.getElementById('main');
+var mountNode = document.getElementById('app');
 var app = Elm.Main.embed(mountNode);
