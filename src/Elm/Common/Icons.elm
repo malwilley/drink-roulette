@@ -59,6 +59,12 @@ plus attrs =
         , rect [ x "0", y "4", height "2", width "10" ] []
         ]
 
+{-| close by Tom Walsh of from the Noun Project
+-}
+close : List (Svg.Attribute msg) -> Svg msg
+close attrs =
+    svg ( viewBox "-20 -20 140 140" :: attrs )
+        [ Svg.path [ d "M59.1,50l34.6-34.6c2.4-2.4,2.4-6.3,0-8.7c-2.4-2.4-6.3-2.4-8.7,0L50.4,41.3L15.8,6.8  c-2.4-2.4-6.3-2.4-8.7,0c-2.4,2.4-2.4,6.3,0,8.7L41.7,50L7.2,84.6c-2.4,2.4-2.4,6.3,0,8.7c2.4,2.4,6.3,2.4,8.7,0l34.6-34.6  l34.6,34.6c2.4,2.4,6.3,2.4,8.7,0c2.4-2.4,2.4-6.3,0-8.7L59.1,50z" ] [] ]
 
 {-| bottle by Amy Morgan from the Noun Project
 -}
