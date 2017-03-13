@@ -31,3 +31,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+@media (max-width: 64em) {
+  .selected-ingredient {
+    font-size: 1em;
+    padding: 10px;
+  }
+}

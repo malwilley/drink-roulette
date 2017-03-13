@@ -68,5 +68,5 @@ selectedButton ingredient =
         , onClick (SelectedIngredientClicked ingredient)
         ]
         [ div [ class "selected-ingredient-text" ] [ text ingredient.name ]
-        , i [ class "fa fa-times-circle ml1" ] []
+        , Common.Icons.close <| [ Svg.Attributes.class "fill-white height-1 ml1"]
         ]
