@@ -44,3 +44,25 @@ type SearchState
 
 type alias Query =
     String
+
+
+getNumIngredients : Model -> Int
+getNumIngredients model =
+    case model.ingredients of
+        Succeed ings ->
+            List.length ings
+
+        _ ->
+            0
+
+
+getNumSelectedIngredients : Model -> Int
+getNumSelectedIngredients model =
+    case model.ingredients of
+        Succeed ings ->
+            ings
+                |> List.filter (\i -> i.selected)
+                |> List.length
+
+        _ ->
+            0

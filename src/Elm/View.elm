@@ -9,6 +9,8 @@ import Models exposing (..)
 import Messages exposing (Msg(..))
 import Ingredients.ViewSearch exposing (viewSearchBar)
 import Ingredients.ViewSelected exposing (viewSelected)
+import Ingredients.Models exposing (getNumSelectedIngredients)
+import Drinks.Models exposing (getNumDrinks)
 import Common.Icons
 import Drinks.ViewHistory
 import Drinks.ViewDrink
@@ -31,9 +33,9 @@ view model =
 viewHeader : Model -> Html Msg
 viewHeader model =
     header [ class "flex justify-between items-center p2" ]
-        [ model |> viewSidebarIcon Common.Icons.bottle IngSidebarToggle
+        [ viewSidebarIcon Common.Icons.bottle IngSidebarToggle (getNumSelectedIngredients model.ingredients)
         , h1 [ class "white m0 mx-auto bold" ] [ text "Drink Roulette" ]
-        , model |> viewSidebarIcon Common.Icons.history HistorySidebarToggle
+        , viewSidebarIcon Common.Icons.history HistorySidebarToggle (getNumDrinks model.currentDrink)
         ]
 
 
@@ -41,21 +43,27 @@ viewStage : Model -> Html Msg
 viewStage model =
     div [ id "stage", class "flex-auto flex items-stretch" ]
         [ div
-            [ class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left "
-                ++ getSidebarClass Ingredients model ]
+            [ class <|
+                "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left "
+                    ++ getSidebarClass Ingredients model
+            ]
             [ div [ class "flex justify-start py2" ]
-                [ model |> viewSidebarIcon Common.Icons.close OverlayClick ]
-            , Html.map IngredientsMsg (viewSelected model.ingredients) ]
+                [ viewSidebarIcon Common.Icons.close OverlayClick 0 ]
+            , Html.map IngredientsMsg (viewSelected model.ingredients)
+            ]
         , div [ class "px3 flex flex-column items-stretch justify-between flex-auto flex-basis-0" ]
             [ Html.map IngredientsMsg (viewSearchBar model.ingredients)
             , Html.map DrinkMsg (Drinks.ViewDrink.view model.currentDrink)
             ]
-        , div [
-            class <| "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--right "
-                ++ getSidebarClass History model ]
-            [  div [ class "flex justify-end py2" ]
-                [ model |> viewSidebarIcon Common.Icons.close OverlayClick ]
-            , Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink) ]
+        , div
+            [ class <|
+                "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--right "
+                    ++ getSidebarClass History model
+            ]
+            [ div [ class "flex justify-end py2" ]
+                [ viewSidebarIcon Common.Icons.close OverlayClick 0 ]
+            , Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink)
+            ]
         ]
 
 
@@ -91,12 +99,25 @@ viewOverlay model =
         []
 
 
-viewSidebarIcon : (List (Svg.Attribute Msg) -> Svg Msg) -> Msg -> Model -> Svg Msg
-viewSidebarIcon icon msg model =
-    icon
-        [ Svg.Attributes.class <| "clickable width-2 height-2 fill-white lg-hide"
-        , onClick msg
+viewSidebarIcon : (List (Svg.Attribute Msg) -> Svg Msg) -> Msg -> Int -> Svg Msg
+viewSidebarIcon icon msg badgeNum =
+    div [ class "relative lg-hide" ]
+        [ icon
+            [ Svg.Attributes.class <| "clickable width-2 height-2 fill-white"
+            , onClick msg
+            ]
+        , viewSidebarIconBadge badgeNum
         ]
+
+
+viewSidebarIconBadge : Int -> Html Msg
+viewSidebarIconBadge num =
+    case num of
+        0 ->
+            div [] []
+
+        _ ->
+            i [ class "badge bg-tan white" ] [ text (toString num) ]
 
 
 getSidebarClass : Sidebar -> Model -> String
@@ -106,10 +127,12 @@ getSidebarClass sidebar model =
     else
         ""
 
+
 getBodyClass : Model -> String
 getBodyClass model =
-  case model.sidebar of
-    Closed ->
-      ""
-    _ ->
-      " height-full overflow-hidden"
+    case model.sidebar of
+        Closed ->
+            ""
+
+        _ ->
+            " height-full overflow-hidden"

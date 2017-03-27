@@ -15,7 +15,8 @@ view : Model -> Html Msg
 view model =
     section [ class "flex-auto flex flex-column flex-stretch mb2" ]
         [ h2 [ class "mb2 h3 tan border-bottom border-tan ls2 uppercase flex items-center flex-none" ]
-            [ Common.Icons.history [ Svg.Attributes.class "cat-icon fill-white" ]
+            [ Common.Icons.history
+                [ Svg.Attributes.class "cat-icon fill-white" ]
             , div [] [ text "drink history" ]
             ]
         , div [ class "flex flex-column flex-stretch flex-auto overflow-auto" ]

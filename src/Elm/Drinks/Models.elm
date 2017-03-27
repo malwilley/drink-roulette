@@ -35,3 +35,8 @@ type alias Drink =
     , ingredients : List IngredientProportion
     , size : DrinkSize
     }
+
+
+getNumDrinks : Model -> Int
+getNumDrinks model =
+    List.length model.previousDrinks

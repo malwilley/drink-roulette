@@ -68,5 +68,6 @@ selectedButton ingredient =
         , onClick (SelectedIngredientClicked ingredient)
         ]
         [ div [ class "selected-ingredient-text" ] [ text ingredient.name ]
-        , Common.Icons.close <| [ Svg.Attributes.class "fill-white height-1 ml1"]
+        , Common.Icons.close
+            [ Svg.Attributes.class "fill-white height-1 ml1" ]
         ]
