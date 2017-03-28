@@ -47,7 +47,7 @@ viewStage model =
                 "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--left "
                     ++ getSidebarClass Ingredients model
             ]
-            [ div [ class "flex justify-start py2" ]
+            [ div [ class "flex justify-start py2 lg-hide" ]
                 [ viewSidebarIcon Common.Icons.close OverlayClick 0 ]
             , Html.map IngredientsMsg (viewSelected model.ingredients)
             ]
@@ -60,7 +60,7 @@ viewStage model =
                 "px2 flex flex-column flex-stretch flex-auto flex-basis-0 sidebar--right "
                     ++ getSidebarClass History model
             ]
-            [ div [ class "flex justify-end py2" ]
+            [ div [ class "flex justify-end py2 lg-hide" ]
                 [ viewSidebarIcon Common.Icons.close OverlayClick 0 ]
             , Html.map DrinkMsg (Drinks.ViewHistory.view model.currentDrink)
             ]
