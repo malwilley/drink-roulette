@@ -10,7 +10,8 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "dev": "webpack-dev-server --port 3000 --host 0.0.0.0"
+    "dev": "webpack-dev-server --port 3000 --host 0.0.0.0",
+    "deploy": ". ./deploy.sh"
   },
   "author": "",
   "license": "ISC",
