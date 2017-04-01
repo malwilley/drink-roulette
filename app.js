@@ -11447,7 +11447,7 @@
 		_elm_lang$core$Json_Decode$succeed(false));
 	var _malwilley$drink_roulette$Ingredients_Commands$decodeIngredientList = _elm_lang$core$Json_Decode$list(_malwilley$drink_roulette$Ingredients_Commands$ingredientDecoder);
 	var _malwilley$drink_roulette$Ingredients_Commands$getAllIngredients = function () {
-		var url = 'http://ryanpeaseisabitch.herokuapp.com/ingredients';
+		var url = 'https://ryanpeaseisabitch.herokuapp.com/ingredients';
 		return A2(
 			_elm_lang$http$Http$send,
 			_malwilley$drink_roulette$Ingredients_Messages$FetchAllDone,
@@ -11533,7 +11533,7 @@
 	var _malwilley$drink_roulette$Drinks_Commands$drinkUrl = function (ids) {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
-			'http://ryanpeaseisabitch.herokuapp.com/makedrink/',
+			'https://ryanpeaseisabitch.herokuapp.com/makedrink/',
 			A2(
 				_elm_lang$core$String$join,
 				'-',
