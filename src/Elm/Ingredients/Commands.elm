@@ -12,7 +12,7 @@ getAllIngredients : Cmd Msg
 getAllIngredients =
     let
         url =
-            "http://ryanpeaseisabitch.herokuapp.com/ingredients"
+            "https://ryanpeaseisabitch.herokuapp.com/ingredients"
     in
         Http.get url decodeIngredientList
             |> Http.send FetchAllDone

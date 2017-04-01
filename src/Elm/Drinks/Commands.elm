@@ -17,7 +17,7 @@ getDrink ids =
 
 drinkUrl : List Int -> String
 drinkUrl ids =
-    "http://ryanpeaseisabitch.herokuapp.com/makedrink/" ++ (String.join "-" (List.map toString ids))
+    "https://ryanpeaseisabitch.herokuapp.com/makedrink/" ++ (String.join "-" (List.map toString ids))
 
 
 drinkDecoder : Decoder Drink
