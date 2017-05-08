@@ -2,6 +2,7 @@ module Ingredients.ViewSelected exposing (viewSelected)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Keyed
 import Svg.Attributes
 import Html.Events exposing (onClick)
 import Common.Models exposing (..)
@@ -46,11 +47,13 @@ viewCategoryButtons : Category -> Model -> Html Msg
 viewCategoryButtons cat model =
     case model.ingredients of
         Succeed ingredients ->
-            div [ class "flex flex-wrap justify-start" ]
+            -- Ingredients must be keyed or order will be messed up when adding/removing
+            Html.Keyed.ul [ class "flex flex-wrap justify-start" ]
                 (ingredients
                     |> List.filter (\i -> i.selected)
                     |> List.filter (\i -> i.category == cat)
-                    |> List.map selectedButton
+                    |> List.map (\i -> ( toString (i.id), i ))
+                    |> List.map (Tuple.mapSecond selectedButton)
                 )
 
         Fetching ->
