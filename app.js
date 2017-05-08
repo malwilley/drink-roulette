@@ -564,7 +564,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  overflow-x: hidden;\n  background-color: #1a1a1a;\n  min-height: 100vh; }\n\nbutton, .btn {\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\ninput {\n  outline: none; }\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  text-align: left; }\n\n#main-container {\n  max-width: 1200px;\n  height: 800px; }\n\n@media (max-width: 64em) {\n  h1 {\n    font-size: 28px; }\n  #main-container {\n    height: 700px; } }\n\n/* COLORS */\n.bg-tan {\n  background-color: #af9664; }\n\n.bg-near-black {\n  background-color: #1a1a1a; }\n\n.fill-white {\n  fill: white; }\n\n.fill-tan {\n  fill: tan; }\n\n.tan {\n  color: #af9664; }\n\n.border-tan {\n  border-color: #af9664; }\n\n.fill-black {\n  fill: #1a1a1a; }\n\n/* DIMENSIONS */\n.height-full {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.width-1 {\n  width: 1rem; }\n\n.width-2 {\n  width: 2rem; }\n\n.width3 {\n  width: 3rem; }\n\n.width-4 {\n  width: 4rem; }\n\n.height-1 {\n  height: 1rem; }\n\n.height-2 {\n  height: 2rem; }\n\n.height-3 {\n  height: 3rem; }\n\n.height-4 {\n  height: 4rem; }\n\n/* LAYOUT */\n.flex-basis-0 {\n  flex-basis: 0; }\n\n/* TYPOGRAPHY */\n.ls1 {\n  letter-spacing: 0.1rem; }\n\n.ls2 {\n  letter-spacing: 0.2rem; }\n\n.uppercase {\n  text-transform: uppercase; }\n\n.capitalize {\n  text-transform: capitalize; }\n\n/* OTHER */\n.clickable {\n  cursor: pointer; }\n\n@keyframes drinkslideon {\n  from {\n    transform: translateX(600px);\n    opacity: 0; }\n  to {\n    transform: translateX(0);\n    opacity: 1; } }\n\n@keyframes recipeslideup {\n  0% {\n    transform: translateY(100px);\n    opacity: 0; }\n  50% {\n    transform: translateY(100px);\n    opacity: 0; }\n  100% {\n    transform: translateX(0);\n    opacity: 1; } }\n\n.no-drink {\n  text-align: center;\n  color: #272727;\n  font-size: 16rem;\n  font-weight: bold; }\n\n.current-drink-container {\n  width: 120px;\n  animation: drinkslideon 1s ease-out; }\n\n.drink-recipe {\n  color: white;\n  max-width: 250px;\n  margin: 14px;\n  text-transform: capitalize;\n  animation: recipeslideup 2s ease-out; }\n  .drink-recipe ul {\n    list-style: none;\n    padding: 0; }\n    .drink-recipe ul li {\n      text-transform: capitalize;\n      color: #9fb4c7; }\n\nsvg.drink-svg {\n  width: 100%; }\n\nrect.glass {\n  stroke-width: 0;\n  fill: #9fb4c7; }\n\n@media (max-width: 64rem) {\n  .no-drink {\n    font-size: 12rem; } }\n\n.prevdrink-icon-container {\n  width: 40px;\n  height: 40px;\n  margin: 10px; }\n\n.prevdrink-title {\n  font-size: 0.8em;\n  margin: 0;\n  color: white;\n  text-align: left; }\n\nli.prevdrink-ingredient, li.prevdrink-ingredient-extra {\n  font-size: 0.6em;\n  color: #9fb4c7;\n  margin: 0;\n  text-transform: capitalize; }\n\nli.prevdrink-ingredient-extra {\n  color: #af9664;\n  text-transform: none; }\n\n@keyframes popin {\n  from {\n    transform: scale(0); }\n  to {\n    transform: scale(1); } }\n\n.cat-icon {\n  width: 30px;\n  height: 30px;\n  margin-right: 8px; }\n\n.selected-ingredient {\n  color: white;\n  padding: 6px;\n  margin: 6px;\n  min-width: 50px;\n  font-size: 0.8em;\n  font-weight: normal;\n  text-transform: capitalize;\n  border-radius: 4px;\n  animation: popin 100ms ease-out; }\n\n.selected-ingredient-text {\n  max-width: 100px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n@media (max-width: 64em) {\n  .selected-ingredient {\n    font-size: 1em;\n    padding: 10px; } }\n\n.bartop {\n  position: relative;\n  height: 120px;\n  background: #af9664;\n  z-index: 1; }\n\n.loader-container {\n  position: absolute;\n  left: 50%;\n  z-index: -1; }\n\n.popup {\n  transform: translateY(-150px);\n  visibility: visible;\n  transition: visibility 0s linear, transform 0.4s ease-out; }\n\n.popdown {\n  transform: translateY(0);\n  visibility: collapse;\n  transition: transform 0.4s ease-in, visibility 0s linear 0.4s; }\n\n.btn-makedrink {\n  position: relative;\n  top: 0;\n  z-index: 0;\n  padding: 0.8em 1em;\n  text-transform: uppercase;\n  font-weight: bold;\n  background: #433d3a;\n  color: #dad7d5;\n  text-shadow: 0px 2px 0px #282422;\n  border-radius: 4px;\n  box-shadow: 0px 6px 0px #282422;\n  transition: 200ms ease; }\n  .btn-makedrink:hover {\n    top: -2px;\n    box-shadow: 0px 8px 0px #282422; }\n  .btn-makedrink:active {\n    top: 5px;\n    box-shadow: 0px 1px 0px #282422; }\n\n.search-bar {\n  border: none;\n  border-bottom: 1px solid #1a1a1a;\n  background: white;\n  width: 100%; }\n  .search-bar input {\n    background: transparent;\n    color: #343434;\n    text-align: left;\n    font-size: 1em;\n    padding: 1em 1em 1em 0em;\n    border: none; }\n\nul.search-results-container {\n  position: absolute;\n  width: 100%;\n  background: white;\n  margin: 0;\n  padding: 0;\n  border-radius: 0px 0px 4px 4px; }\n  ul.search-results-container li {\n    text-align: left;\n    padding: 0;\n    height: 50px;\n    cursor: pointer;\n    text-transform: capitalize; }\n    ul.search-results-container li .search-text {\n      line-height: 50px; }\n  ul.search-results-container li:hover {\n    background: rgba(26, 26, 26, 0.1); }\n\n.search-icon-container {\n  width: 50px;\n  height: 50px;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.logo {\n  fill: gray;\n  width: 50px;\n  height: 50px;\n  padding: 10px; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.box-loader {\n  position: relative;\n  margin: -12px 0 0 -12px;\n  border: 2.4px solid #af9664;\n  width: 24px;\n  height: 24px;\n  overflow: hidden;\n  animation: spin 1.4s linear infinite reverse;\n  filter: url(#goo);\n  box-shadow: 0 0 0 1px #af9664 inset; }\n  .box-loader:before {\n    position: absolute;\n    content: \"\";\n    animation: spin 1.4s cubic-bezier(0.59, 0.25, 0.4, 0.69) infinite;\n    background: #af9664;\n    transform-origin: top center;\n    border-radius: 50%;\n    width: 150%;\n    height: 150%;\n    top: 50%;\n    left: -12.5%; }\n\n@media (max-width: 64em) {\n  .sidebar--left, .sidebar--right {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 100%;\n    max-width: 36em;\n    background: #1a1a1a;\n    transition: transform 200ms ease-out;\n    z-index: 2; }\n  .sidebar--left {\n    left: 0;\n    transform: translateX(-100%); }\n  .sidebar--right {\n    right: 0;\n    transform: translateX(100%); }\n  .sidebar--show {\n    transform: translateX(0); } }\n\n.overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: -1;\n  background-color: black;\n  opacity: 0;\n  transition: opacity 200ms ease-out; }\n\n.overlay--show {\n  z-index: 1;\n  opacity: 0.8; }\n\n.badge {\n  position: absolute;\n  top: -4px;\n  right: -4px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  font-size: 0.6em;\n  font-weight: bold;\n  vertical-align: middle;\n  text-align: center;\n  line-height: 16px; }\n", ""]);
+	exports.push([module.id, "body {\n  overflow-x: hidden;\n  background-color: #1a1a1a;\n  min-height: 100vh; }\n\nbutton, .btn {\n  user-select: none;\n  -webkit-user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\ninput {\n  outline: none; }\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  text-align: left; }\n\n#main-container {\n  max-width: 1200px;\n  height: 800px; }\n\n@media (max-width: 64em) {\n  h1 {\n    font-size: 28px; }\n  #main-container {\n    height: 700px; } }\n\n/* COLORS */\n.bg-tan {\n  background-color: #af9664; }\n\n.bg-near-black {\n  background-color: #1a1a1a; }\n\n.fill-white {\n  fill: white; }\n\n.fill-tan {\n  fill: tan; }\n\n.tan {\n  color: #af9664; }\n\n.border-tan {\n  border-color: #af9664; }\n\n.fill-black {\n  fill: #1a1a1a; }\n\n/* DIMENSIONS */\n.height-full {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.width-1 {\n  width: 1rem; }\n\n.width-2 {\n  width: 2rem; }\n\n.width3 {\n  width: 3rem; }\n\n.width-4 {\n  width: 4rem; }\n\n.height-1 {\n  height: 1rem; }\n\n.height-2 {\n  height: 2rem; }\n\n.height-3 {\n  height: 3rem; }\n\n.height-4 {\n  height: 4rem; }\n\n/* LAYOUT */\n.flex-basis-0 {\n  flex-basis: 0; }\n\n/* TYPOGRAPHY */\n.ls1 {\n  letter-spacing: 0.1rem; }\n\n.ls2 {\n  letter-spacing: 0.2rem; }\n\n.uppercase {\n  text-transform: uppercase; }\n\n.capitalize {\n  text-transform: capitalize; }\n\n/* OTHER */\n.clickable {\n  cursor: pointer; }\n\n@keyframes drinkslideon {\n  from {\n    transform: translateX(600px);\n    opacity: 0; }\n  to {\n    transform: translateX(0);\n    opacity: 1; } }\n\n@keyframes recipeslideup {\n  0% {\n    transform: translateY(100px);\n    opacity: 0; }\n  50% {\n    transform: translateY(100px);\n    opacity: 0; }\n  100% {\n    transform: translateX(0);\n    opacity: 1; } }\n\n.no-drink {\n  text-align: center;\n  color: #272727;\n  font-size: 16rem;\n  font-weight: bold; }\n\n.current-drink-container {\n  width: 120px;\n  animation: drinkslideon 1s ease-out; }\n\n.drink-recipe {\n  color: white;\n  max-width: 250px;\n  margin: 14px;\n  text-transform: capitalize;\n  animation: recipeslideup 2s ease-out; }\n  .drink-recipe ul {\n    list-style: none;\n    padding: 0; }\n    .drink-recipe ul li {\n      text-transform: capitalize;\n      color: #9fb4c7; }\n\nsvg.drink-svg {\n  width: 100%; }\n\nrect.glass {\n  stroke-width: 0;\n  fill: #9fb4c7; }\n\n.fill-red {\n  fill: #bf4040; }\n\n.fill-pink {\n  fill: #bf406a; }\n\n.fill-purple {\n  fill: #aa40bf; }\n\n.fill-indigo {\n  fill: #4055bf; }\n\n.fill-cyan {\n  fill: #40aabf; }\n\n.fill-green {\n  fill: #40bf55; }\n\n.fill-lime {\n  fill: #95bf40; }\n\n.fill-yellow {\n  fill: #bfb340; }\n\n.fill-orange {\n  fill: #cc7333; }\n\n.fill-brown {\n  fill: #8f533d; }\n\n.fill-grey {\n  fill: gray; }\n\n.fill-black {\n  fill: #333333; }\n\n.fill-white {\n  fill: #cccccc; }\n\n@media (max-width: 64rem) {\n  .no-drink {\n    font-size: 12rem; } }\n\n.prevdrink-icon-container {\n  width: 40px;\n  height: 40px;\n  margin: 10px; }\n\n.prevdrink-title {\n  font-size: 0.8em;\n  margin: 0;\n  color: white;\n  text-align: left; }\n\nli.prevdrink-ingredient, li.prevdrink-ingredient-extra {\n  font-size: 0.6em;\n  color: #9fb4c7;\n  margin: 0;\n  text-transform: capitalize; }\n\nli.prevdrink-ingredient-extra {\n  color: #af9664;\n  text-transform: none; }\n\n@keyframes popin {\n  from {\n    transform: scale(0); }\n  to {\n    transform: scale(1); } }\n\n.cat-icon {\n  width: 30px;\n  height: 30px;\n  margin-right: 8px; }\n\n.selected-ingredient {\n  padding: 6px;\n  margin: 6px;\n  min-width: 50px;\n  font-size: 0.8em;\n  font-weight: normal;\n  text-transform: capitalize;\n  border-radius: 4px;\n  animation: popin 100ms ease-out; }\n\n.selected-ingredient-text {\n  max-width: 100px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.background-red {\n  background-color: #bf4040;\n  color: white;\n  fill: white; }\n\n.background-pink {\n  background-color: #bf406a;\n  color: white;\n  fill: white; }\n\n.background-purple {\n  background-color: #aa40bf;\n  color: black;\n  fill: black; }\n\n.background-indigo {\n  background-color: #4055bf;\n  color: white;\n  fill: white; }\n\n.background-cyan {\n  background-color: #40aabf;\n  color: black;\n  fill: black; }\n\n.background-green {\n  background-color: #40bf55;\n  color: white;\n  fill: white; }\n\n.background-lime {\n  background-color: #95bf40;\n  color: black;\n  fill: black; }\n\n.background-yellow {\n  background-color: #bfb340;\n  color: black;\n  fill: black; }\n\n.background-orange {\n  background-color: #cc7333;\n  color: white;\n  fill: white; }\n\n.background-brown {\n  background-color: #8f533d;\n  color: #f0e1db;\n  fill: #f0e1db; }\n\n.background-grey {\n  background-color: gray;\n  color: white;\n  fill: white; }\n\n.background-black {\n  background-color: #333333;\n  color: #b3b3b3;\n  fill: #b3b3b3; }\n\n.background-white {\n  background-color: #cccccc;\n  color: #4d4d4d;\n  fill: #4d4d4d; }\n\n@media (max-width: 64em) {\n  .selected-ingredient {\n    font-size: 1em;\n    padding: 10px; } }\n\n.bartop {\n  position: relative;\n  height: 120px;\n  background: #af9664;\n  z-index: 1; }\n\n.loader-container {\n  position: absolute;\n  left: 50%;\n  z-index: -1; }\n\n.popup {\n  transform: translateY(-150px);\n  visibility: visible;\n  transition: visibility 0s linear, transform 0.4s ease-out; }\n\n.popdown {\n  transform: translateY(0);\n  visibility: collapse;\n  transition: transform 0.4s ease-in, visibility 0s linear 0.4s; }\n\n.btn-makedrink {\n  position: relative;\n  top: 0;\n  z-index: 0;\n  padding: 0.8em 1em;\n  text-transform: uppercase;\n  font-weight: bold;\n  background: #433d3a;\n  color: #dad7d5;\n  text-shadow: 0px 2px 0px #282422;\n  border-radius: 4px;\n  box-shadow: 0px 6px 0px #282422;\n  transition: 200ms ease; }\n  .btn-makedrink:hover {\n    top: -2px;\n    box-shadow: 0px 8px 0px #282422; }\n  .btn-makedrink:active {\n    top: 5px;\n    box-shadow: 0px 1px 0px #282422; }\n\n.search-bar {\n  border: none;\n  border-bottom: 1px solid #1a1a1a;\n  background: white;\n  width: 100%; }\n  .search-bar input {\n    background: transparent;\n    color: #343434;\n    text-align: left;\n    font-size: 1em;\n    padding: 1em 1em 1em 0em;\n    border: none; }\n\nul.search-results-container {\n  position: absolute;\n  width: 100%;\n  background: white;\n  margin: 0;\n  padding: 0;\n  border-radius: 0px 0px 4px 4px; }\n  ul.search-results-container li {\n    text-align: left;\n    padding: 0;\n    height: 50px;\n    cursor: pointer;\n    text-transform: capitalize; }\n    ul.search-results-container li .search-text {\n      line-height: 50px; }\n  ul.search-results-container li:hover {\n    background: rgba(26, 26, 26, 0.1); }\n\n.search-icon-container {\n  width: 50px;\n  height: 50px;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.logo {\n  fill: gray;\n  width: 50px;\n  height: 50px;\n  padding: 10px; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.box-loader {\n  position: relative;\n  margin: -12px 0 0 -12px;\n  border: 2.4px solid #af9664;\n  width: 24px;\n  height: 24px;\n  overflow: hidden;\n  animation: spin 1.4s linear infinite reverse;\n  filter: url(#goo);\n  box-shadow: 0 0 0 1px #af9664 inset; }\n  .box-loader:before {\n    position: absolute;\n    content: \"\";\n    animation: spin 1.4s cubic-bezier(0.59, 0.25, 0.4, 0.69) infinite;\n    background: #af9664;\n    transform-origin: top center;\n    border-radius: 50%;\n    width: 150%;\n    height: 150%;\n    top: 50%;\n    left: -12.5%; }\n\n@media (max-width: 64em) {\n  .sidebar--left, .sidebar--right {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 100%;\n    max-width: 36em;\n    background: #1a1a1a;\n    transition: transform 200ms ease-out;\n    z-index: 2; }\n  .sidebar--left {\n    left: 0;\n    transform: translateX(-100%); }\n  .sidebar--right {\n    right: 0;\n    transform: translateX(100%); }\n  .sidebar--show {\n    transform: translateX(0); } }\n\n.overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: -1;\n  background-color: black;\n  opacity: 0;\n  transition: opacity 200ms ease-out; }\n\n.overlay--show {\n  z-index: 1;\n  opacity: 0.8; }\n\n.badge {\n  position: absolute;\n  top: -4px;\n  right: -4px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  font-size: 0.6em;\n  font-weight: bold;\n  vertical-align: middle;\n  text-align: center;\n  line-height: 16px; }\n", ""]);
 
 	// exports
 
@@ -11378,44 +11378,9 @@
 		return {ctor: 'SearchResultClicked', _0: a};
 	};
 
-	var _malwilley$drink_roulette$Ingredients_Commands$colorNameToHex = function (name) {
-		var str = _elm_lang$core$String$toLower(name);
-		var _p0 = str;
-		switch (_p0) {
-			case 'brown':
-				return _elm_lang$core$Maybe$Just('#302d2c');
-			case 'tan':
-				return _elm_lang$core$Maybe$Just('#9E865D');
-			case 'yellow':
-				return _elm_lang$core$Maybe$Just('#AFAF64');
-			case 'light blue':
-				return _elm_lang$core$Maybe$Just('#64AFAE');
-			case 'purple':
-				return _elm_lang$core$Maybe$Just('#AB64AF');
-			case 'red':
-				return _elm_lang$core$Maybe$Just('#AF64640');
-			case 'dark red':
-				return _elm_lang$core$Maybe$Just('#7A4C4C');
-			case 'orange':
-				return _elm_lang$core$Maybe$Just('#AF7264');
-			default:
-				return _elm_lang$core$Maybe$Nothing;
-		}
-	};
-	var _malwilley$drink_roulette$Ingredients_Commands$stringToHexDecoder = function (str) {
-		return _elm_lang$core$Json_Decode$succeed(
-			A2(
-				_elm_lang$core$Maybe$withDefault,
-				'#777',
-				_malwilley$drink_roulette$Ingredients_Commands$colorNameToHex(str)));
-	};
-	var _malwilley$drink_roulette$Ingredients_Commands$colorDecoder = A2(
-		_elm_lang$core$Json_Decode$andThen,
-		_malwilley$drink_roulette$Ingredients_Commands$stringToHexDecoder,
-		A2(_elm_lang$core$Json_Decode$field, 'Color', _elm_lang$core$Json_Decode$string));
 	var _malwilley$drink_roulette$Ingredients_Commands$intToCategory = function (num) {
-		var _p1 = num;
-		switch (_p1) {
+		var _p0 = num;
+		switch (_p0) {
 			case 0:
 				return _elm_lang$core$Maybe$Just(_malwilley$drink_roulette$Ingredients_Models$Alcohol);
 			case 1:
@@ -11443,7 +11408,7 @@
 		A2(_elm_lang$core$Json_Decode$field, 'ID', _elm_lang$core$Json_Decode$int),
 		A2(_elm_lang$core$Json_Decode$field, 'Name', _elm_lang$core$Json_Decode$string),
 		_malwilley$drink_roulette$Ingredients_Commands$categoryDecoder,
-		_malwilley$drink_roulette$Ingredients_Commands$colorDecoder,
+		A2(_elm_lang$core$Json_Decode$field, 'Color', _elm_lang$core$Json_Decode$string),
 		_elm_lang$core$Json_Decode$succeed(false));
 	var _malwilley$drink_roulette$Ingredients_Commands$decodeIngredientList = _elm_lang$core$Json_Decode$list(_malwilley$drink_roulette$Ingredients_Commands$ingredientDecoder);
 	var _malwilley$drink_roulette$Ingredients_Commands$getAllIngredients = function () {
@@ -11711,33 +11676,34 @@
 				_elm_lang$svg$Svg$rect,
 				{
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$x(
-						_elm_lang$core$Basics$toString(dim.thickness + dim.pad)),
+					_0: _elm_lang$svg$Svg_Attributes$class(
+						A2(_elm_lang$core$Basics_ops['++'], 'fill-', ip.ingredient.color)),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$y(
-							_elm_lang$core$Basics$toString(posY)),
+						_0: _elm_lang$svg$Svg_Attributes$x(
+							_elm_lang$core$Basics$toString(dim.thickness + dim.pad)),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$width(
-								_elm_lang$core$Basics$toString(dim.width - (2 * (dim.thickness + dim.pad)))),
+							_0: _elm_lang$svg$Svg_Attributes$y(
+								_elm_lang$core$Basics$toString(posY)),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$height(
-									function () {
-										var _p2 = animation;
-										if (_p2.ctor === 'Animated') {
-											return '0';
-										} else {
-											return _elm_lang$core$Basics$toString(ingHeight);
-										}
-									}()),
+								_0: _elm_lang$svg$Svg_Attributes$width(
+									_elm_lang$core$Basics$toString(dim.width - (2 * (dim.thickness + dim.pad)))),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$strokeWidth('0'),
+									_0: _elm_lang$svg$Svg_Attributes$height(
+										function () {
+											var _p2 = animation;
+											if (_p2.ctor === 'Animated') {
+												return '0';
+											} else {
+												return _elm_lang$core$Basics$toString(ingHeight);
+											}
+										}()),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fill(ip.ingredient.color),
+										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('0'),
 										_1: {ctor: '[]'}
 									}
 								}
@@ -12740,25 +12706,18 @@
 	};
 
 	var _malwilley$drink_roulette$Ingredients_ViewSelected$selectedButton = function (ingredient) {
+		var colorClass = A2(_elm_lang$core$Basics_ops['++'], 'background-', ingredient.color);
 		return A2(
 			_elm_lang$html$Html$button,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('btn selected-ingredient flex justify-between items-center'),
+				_0: _elm_lang$html$Html_Attributes$class(
+					A2(_elm_lang$core$Basics_ops['++'], 'btn selected-ingredient flex justify-between items-center ', colorClass)),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: ingredient.color},
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Events$onClick(
-							_malwilley$drink_roulette$Ingredients_Messages$SelectedIngredientClicked(ingredient)),
-						_1: {ctor: '[]'}
-					}
+					_0: _elm_lang$html$Html_Events$onClick(
+						_malwilley$drink_roulette$Ingredients_Messages$SelectedIngredientClicked(ingredient)),
+					_1: {ctor: '[]'}
 				}
 			},
 			{
@@ -12780,7 +12739,7 @@
 					_0: _malwilley$drink_roulette$Common_Icons$close(
 						{
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$class('fill-white height-1 ml1'),
+							_0: _elm_lang$svg$Svg_Attributes$class('height-1 ml1'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
