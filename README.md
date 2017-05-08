@@ -2,6 +2,8 @@
 
 Source code for the Drink Roulette frontend, written in Elm.
 
+https://malwilley.github.io/drink-roulette/
+
 ## Instructions for running locally
 
 ```
