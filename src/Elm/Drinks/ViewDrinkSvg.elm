@@ -89,7 +89,8 @@ drawIngredient dim fracUsed ip animation =
             )
     in
         rect
-            [ x (toString (dim.thickness + dim.pad))
+            [ class ("fill-" ++ ip.ingredient.color)
+            , x (toString (dim.thickness + dim.pad))
             , y (toString posY)
             , width (toString (dim.width - (2 * (dim.thickness + dim.pad))))
             , height
@@ -101,7 +102,6 @@ drawIngredient dim fracUsed ip animation =
                         toString ingHeight
                 )
             , strokeWidth "0"
-            , fill ip.ingredient.color
             ]
             (case animation of
                 Animated ->

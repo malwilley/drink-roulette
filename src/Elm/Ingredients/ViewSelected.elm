@@ -62,12 +62,15 @@ viewCategoryButtons cat model =
 
 selectedButton : Ingredient -> Html Msg
 selectedButton ingredient =
-    button
-        [ class "btn selected-ingredient flex justify-between items-center"
-        , style [ ( "background-color", ingredient.color ) ]
-        , onClick (SelectedIngredientClicked ingredient)
-        ]
-        [ div [ class "selected-ingredient-text" ] [ text ingredient.name ]
-        , Common.Icons.close
-            [ Svg.Attributes.class "fill-white height-1 ml1" ]
-        ]
+    let
+        colorClass =
+            "background-" ++ ingredient.color
+    in
+        button
+            [ class ("btn selected-ingredient flex justify-between items-center " ++ colorClass)
+            , onClick (SelectedIngredientClicked ingredient)
+            ]
+            [ div [ class "selected-ingredient-text" ] [ text ingredient.name ]
+            , Common.Icons.close
+                [ Svg.Attributes.class "height-1 ml1" ]
+            ]

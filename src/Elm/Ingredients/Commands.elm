@@ -29,7 +29,7 @@ ingredientDecoder =
         (field "ID" int)
         (field "Name" string)
         categoryDecoder
-        colorDecoder
+        (field "Color" string)
         (succeed False)
 
 
@@ -59,49 +59,3 @@ intToCategory num =
 
         _ ->
             Nothing
-
-
-colorDecoder : Decoder String
-colorDecoder =
-    field "Color" string
-        |> andThen stringToHexDecoder
-
-
-stringToHexDecoder : String -> Decoder String
-stringToHexDecoder str =
-    succeed (Maybe.withDefault "#777" <| colorNameToHex str)
-
-
-colorNameToHex : String -> Maybe String
-colorNameToHex name =
-    let
-        str =
-            toLower name
-    in
-        case str of
-            "brown" ->
-                Just "#302d2c"
-
-            "tan" ->
-                Just "#9E865D"
-
-            "yellow" ->
-                Just "#AFAF64"
-
-            "light blue" ->
-                Just "#64AFAE"
-
-            "purple" ->
-                Just "#AB64AF"
-
-            "red" ->
-                Just "#AF64640"
-
-            "dark red" ->
-                Just "#7A4C4C"
-
-            "orange" ->
-                Just "#AF7264"
-
-            str ->
-                Nothing

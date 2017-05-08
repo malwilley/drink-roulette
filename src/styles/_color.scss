@@ -1,5 +1,35 @@
 $near-black: #1a1a1a;
 $near-black-light: lighten($near-black, 5%);
-$tan: #af9664;
-$brown: #433d3a;
-$gray: #9fb4c7;
+$primary: #af9664;
+$secondary: #433d3a;
+$tertiary: #9fb4c7;
+
+// ingredient colors
+$red: hsl(0, 50%, 50%);
+$pink: hsl(340, 50%, 50%);
+$purple: hsl(290, 50%, 50%);
+$indigo: hsl(230, 50%, 50%);
+$cyan: hsl(190, 50%, 50%);
+$green: hsl(130, 50%, 50%);
+$lime: hsl(80, 50%, 50%);
+$yellow: hsl(54, 50%, 50%);
+$orange: hsl(25, 60%, 50%);
+$brown: hsl(16, 40%, 40%);
+$grey: hsl(0, 0%, 50%);
+$black: hsl(0, 0%, 20%);
+$white: hsl(0, 0%, 80%);
+
+$color_names:   red,  pink,   purple,   indigo,   cyan,   green,  lime,   yellow,   orange,   brown,  grey,   black,  white;
+$color_values: $red, $pink,  $purple,  $indigo,  $cyan,  $green, $lime,  $yellow,  $orange,  $brown, $grey,  $black, $white;
+
+@function brightness($color) {
+  $sum: red($color) + green($color) + blue($color);
+  @return percentage($sum / (255*3));
+}
+
+@function foreground_color($background_color) {
+  @if brightness($background_color) > 50% {
+    @return darken($background_color, 50%);
+  }
+  @return lighten($background-color, 50%)
+}

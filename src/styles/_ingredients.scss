@@ -14,7 +14,6 @@
 }
 
 .selected-ingredient {
-  color: white;
   padding: 6px;
   margin: 6px;
   min-width: 50px;
@@ -30,6 +29,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@for $i from 1 through length($color_names) {
+  $foreground_color: foreground_color(nth($color_values, $i));
+  .background-#{nth($color_names, $i)} {
+    background-color: nth($color_values, $i);
+    color: $foreground_color;
+    fill: $foreground_color;
+  }
 }
 
 @media (max-width: 64em) {
