@@ -9253,6 +9253,10 @@
 			return {stopPropagation: a, preventDefault: b};
 		});
 
+	var _elm_lang$html$Html_Keyed$node = _elm_lang$virtual_dom$VirtualDom$keyedNode;
+	var _elm_lang$html$Html_Keyed$ol = _elm_lang$html$Html_Keyed$node('ol');
+	var _elm_lang$html$Html_Keyed$ul = _elm_lang$html$Html_Keyed$node('ul');
+
 	var _elm_lang$http$Native_Http = function() {
 
 
@@ -12752,7 +12756,7 @@
 			switch (_p0.ctor) {
 				case 'Succeed':
 					return A2(
-						_elm_lang$html$Html$div,
+						_elm_lang$html$Html_Keyed$ul,
 						{
 							ctor: '::',
 							_0: _elm_lang$html$Html_Attributes$class('flex flex-wrap justify-start'),
@@ -12760,18 +12764,27 @@
 						},
 						A2(
 							_elm_lang$core$List$map,
-							_malwilley$drink_roulette$Ingredients_ViewSelected$selectedButton,
+							_elm_lang$core$Tuple$mapSecond(_malwilley$drink_roulette$Ingredients_ViewSelected$selectedButton),
 							A2(
-								_elm_lang$core$List$filter,
+								_elm_lang$core$List$map,
 								function (i) {
-									return _elm_lang$core$Native_Utils.eq(i.category, cat);
+									return {
+										ctor: '_Tuple2',
+										_0: _elm_lang$core$Basics$toString(i.id),
+										_1: i
+									};
 								},
 								A2(
 									_elm_lang$core$List$filter,
 									function (i) {
-										return i.selected;
+										return _elm_lang$core$Native_Utils.eq(i.category, cat);
 									},
-									_p0._0))));
+									A2(
+										_elm_lang$core$List$filter,
+										function (i) {
+											return i.selected;
+										},
+										_p0._0)))));
 				case 'Fetching':
 					return A2(
 						_elm_lang$html$Html$div,
