@@ -2,6 +2,7 @@ module Drinks.ViewDrinkSvg exposing (..)
 
 import Html exposing (..)
 import Svg exposing (..)
+import Svg.Keyed
 import Svg.Attributes exposing (..)
 import Common.Models exposing (..)
 import Drinks.Models exposing (..)
@@ -33,40 +34,47 @@ drinkDim =
 
 viewSvg : Drink -> Animation -> Html Msg
 viewSvg drink animation =
-    svg [ class "drink-svg", viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
+    Svg.Keyed.node "svg"
+        [ class "drink-svg", viewBox ("0 0 " ++ toString drinkDim.width ++ " " ++ toString drinkDim.height) ]
         ((drawGlass drinkDim) ++ (drawIngredients drinkDim drink.ingredients [] animation))
 
 
-drawGlass : DrinkDimensions -> List (Svg Msg)
+drawGlass : DrinkDimensions -> List ( String, Svg Msg )
 drawGlass dim =
-    [ rect
-        [ class "glass"
-        , x "0"
-        , y "0"
-        , width (toString dim.thickness)
-        , height (toString dim.height)
-        ]
-        []
-    , rect
-        [ class "glass"
-        , x (toString (dim.width - dim.thickness))
-        , y "0"
-        , width (toString dim.thickness)
-        , height (toString dim.height)
-        ]
-        []
-    , rect
-        [ class "glass"
-        , x "0"
-        , y (toString (dim.height - dim.base))
-        , width (toString dim.width)
-        , height (toString dim.base)
-        ]
-        []
+    [ ( "0"
+      , rect
+            [ class "glass"
+            , x "0"
+            , y "0"
+            , width (toString dim.thickness)
+            , height (toString dim.height)
+            ]
+            []
+      )
+    , ( "1"
+      , rect
+            [ class "glass"
+            , x (toString (dim.width - dim.thickness))
+            , y "0"
+            , width (toString dim.thickness)
+            , height (toString dim.height)
+            ]
+            []
+      )
+    , ( "2"
+      , rect
+            [ class "glass"
+            , x "0"
+            , y (toString (dim.height - dim.base))
+            , width (toString dim.width)
+            , height (toString dim.base)
+            ]
+            []
+      )
     ]
 
 
-drawIngredients : DrinkDimensions -> List IngredientProportion -> List (Svg Msg) -> Animation -> List (Svg Msg)
+drawIngredients : DrinkDimensions -> List IngredientProportion -> List ( String, Svg Msg ) -> Animation -> List ( String, Svg Msg )
 drawIngredients dim ips svgs animation =
     case ips of
         [] ->
@@ -75,7 +83,7 @@ drawIngredients dim ips svgs animation =
         hd :: tl ->
             let
                 svg =
-                    drawIngredient dim (1 - (List.sum <| List.map (\ip -> ip.proportion) ips)) hd animation
+                    ( toString hd.proportion, drawIngredient dim (1 - (List.sum <| List.map (\ip -> ip.proportion) ips)) hd animation )
             in
                 drawIngredients dim tl (svg :: svgs) animation
 
