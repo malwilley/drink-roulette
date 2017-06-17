@@ -9987,6 +9987,19 @@
 	var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
 	var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 
+	var _elm_lang$svg$Svg_Keyed$svgNamespace = A2(
+		_elm_lang$virtual_dom$VirtualDom$property,
+		'namespace',
+		_elm_lang$core$Json_Encode$string('http://www.w3.org/2000/svg'));
+	var _elm_lang$svg$Svg_Keyed$node = F3(
+		function (name, attributes, children) {
+			return A3(
+				_elm_lang$virtual_dom$VirtualDom$keyedNode,
+				name,
+				{ctor: '::', _0: _elm_lang$svg$Svg_Keyed$svgNamespace, _1: attributes},
+				children);
+		});
+
 	var _malwilley$drink_roulette$Common_Icons$liquidBoxLoader = A2(
 		_elm_lang$html$Html$div,
 		{
@@ -11801,18 +11814,23 @@
 				if (_p4.ctor === '[]') {
 					return svgs;
 				} else {
-					var svg = A4(
-						_malwilley$drink_roulette$Drinks_ViewDrinkSvg$drawIngredient,
-						dim,
-						1 - _elm_lang$core$List$sum(
-							A2(
-								_elm_lang$core$List$map,
-								function (ip) {
-									return ip.proportion;
-								},
-								ips)),
-						_p4._0,
-						animation);
+					var _p5 = _p4._0;
+					var svg = {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Basics$toString(_p5.proportion),
+						_1: A4(
+							_malwilley$drink_roulette$Drinks_ViewDrinkSvg$drawIngredient,
+							dim,
+							1 - _elm_lang$core$List$sum(
+								A2(
+									_elm_lang$core$List$map,
+									function (ip) {
+										return ip.proportion;
+									},
+									ips)),
+							_p5,
+							animation)
+					};
 					var _v3 = dim,
 						_v4 = _p4._1,
 						_v5 = {ctor: '::', _0: svg, _1: svgs},
@@ -11828,43 +11846,17 @@
 	var _malwilley$drink_roulette$Drinks_ViewDrinkSvg$drawGlass = function (dim) {
 		return {
 			ctor: '::',
-			_0: A2(
-				_elm_lang$svg$Svg$rect,
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$class('glass'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x('0'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y('0'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$width(
-									_elm_lang$core$Basics$toString(dim.thickness)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$height(
-										_elm_lang$core$Basics$toString(dim.height)),
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				},
-				{ctor: '[]'}),
-			_1: {
-				ctor: '::',
-				_0: A2(
+			_0: {
+				ctor: '_Tuple2',
+				_0: '0',
+				_1: A2(
 					_elm_lang$svg$Svg$rect,
 					{
 						ctor: '::',
 						_0: _elm_lang$svg$Svg_Attributes$class('glass'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$x(
-								_elm_lang$core$Basics$toString(dim.width - dim.thickness)),
+							_0: _elm_lang$svg$Svg_Attributes$x('0'),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$svg$Svg_Attributes$y('0'),
@@ -11882,36 +11874,74 @@
 							}
 						}
 					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: A2(
+					{ctor: '[]'})
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: '1',
+					_1: A2(
 						_elm_lang$svg$Svg$rect,
 						{
 							ctor: '::',
 							_0: _elm_lang$svg$Svg_Attributes$class('glass'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x('0'),
+								_0: _elm_lang$svg$Svg_Attributes$x(
+									_elm_lang$core$Basics$toString(dim.width - dim.thickness)),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y(
-										_elm_lang$core$Basics$toString(dim.height - dim.base)),
+									_0: _elm_lang$svg$Svg_Attributes$y('0'),
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$svg$Svg_Attributes$width(
-											_elm_lang$core$Basics$toString(dim.width)),
+											_elm_lang$core$Basics$toString(dim.thickness)),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$svg$Svg_Attributes$height(
-												_elm_lang$core$Basics$toString(dim.base)),
+												_elm_lang$core$Basics$toString(dim.height)),
 											_1: {ctor: '[]'}
 										}
 									}
 								}
 							}
 						},
-						{ctor: '[]'}),
+						{ctor: '[]'})
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: '2',
+						_1: A2(
+							_elm_lang$svg$Svg$rect,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('glass'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$x('0'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$y(
+											_elm_lang$core$Basics$toString(dim.height - dim.base)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$width(
+												_elm_lang$core$Basics$toString(dim.width)),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$height(
+													_elm_lang$core$Basics$toString(dim.base)),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							},
+							{ctor: '[]'})
+					},
 					_1: {ctor: '[]'}
 				}
 			}
@@ -11920,8 +11950,9 @@
 	var _malwilley$drink_roulette$Drinks_ViewDrinkSvg$drinkDim = {width: 50, height: 100, thickness: 3, base: 15, room: 8, pad: 2, animationTime: 1.2};
 	var _malwilley$drink_roulette$Drinks_ViewDrinkSvg$viewSvg = F2(
 		function (drink, animation) {
-			return A2(
-				_elm_lang$svg$Svg$svg,
+			return A3(
+				_elm_lang$svg$Svg_Keyed$node,
+				'svg',
 				{
 					ctor: '::',
 					_0: _elm_lang$svg$Svg_Attributes$class('drink-svg'),
