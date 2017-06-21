@@ -13,7 +13,7 @@ update msg model ids =
         MakeDrink ->
             ( model
                 |> setCurrentDrink (Just Fetching)
-            , getDrink ids
+            , getDrink model.apiHost ids
             )
 
         LoadDrinkClick drink ->

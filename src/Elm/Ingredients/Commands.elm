@@ -2,17 +2,16 @@ module Ingredients.Commands exposing (..)
 
 import Http
 import Json.Decode exposing (..)
-import String exposing (..)
 import Maybe
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (..)
 
 
-getAllIngredients : Cmd Msg
-getAllIngredients =
+getAllIngredients : String -> Cmd Msg
+getAllIngredients apiHost =
     let
         url =
-            "https://ryanpeaseisabitch.herokuapp.com/ingredients"
+            apiHost ++ "/ingredients"
     in
         Http.get url decodeIngredientList
             |> Http.send FetchAllDone

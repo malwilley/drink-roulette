@@ -10,13 +10,18 @@ import Ingredients.Models
 import Update exposing (update)
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( { ingredients = Ingredients.Models.init
-      , currentDrink = Drinks.Models.init
+type alias Flags =
+    { apiHost : String }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    ( { ingredients = Ingredients.Models.init flags.apiHost
+      , currentDrink = Drinks.Models.init flags.apiHost
       , sidebar = Closed
+      , apiHost = flags.apiHost
       }
-    , Cmd.map IngredientsMsg getAllIngredients
+    , Cmd.map IngredientsMsg (getAllIngredients flags.apiHost)
     )
 
 
@@ -25,9 +30,9 @@ subscriptions model =
     Sub.none
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Html.program
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update

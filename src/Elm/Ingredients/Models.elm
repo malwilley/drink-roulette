@@ -3,11 +3,12 @@ module Ingredients.Models exposing (..)
 import Common.Models exposing (..)
 
 
-init : Model
-init =
+init : String -> Model
+init apiHost =
     { ingredients = Fetching
     , searchState = Blurred
     , searchQuery = ""
+    , apiHost = apiHost
     }
 
 
@@ -15,6 +16,7 @@ type alias Model =
     { ingredients : HttpResult (List Ingredient)
     , searchState : SearchState
     , searchQuery : Query
+    , apiHost : String
     }
 
 

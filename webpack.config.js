@@ -1,4 +1,5 @@
-var path = require("path");
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: {
@@ -35,7 +36,7 @@ module.exports = {
             {
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]',            
+                    name: '[name].[ext]',
                 }
             }
         ]
@@ -52,7 +53,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    mimetype: 'application/font-woff'            
+                    mimetype: 'application/font-woff'
                 }
             }
         ]
@@ -65,6 +66,12 @@ module.exports = {
 
     noParse: /\.elm$/,
   },
+
+  plugins: [
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV',
+    ]),
+  ],
 
   devServer: {
     inline: true,

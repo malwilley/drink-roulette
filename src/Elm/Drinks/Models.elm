@@ -4,16 +4,18 @@ import Common.Models exposing (..)
 import Ingredients.Models exposing (Ingredient)
 
 
-init : Model
-init =
+init : String -> Model
+init apiHost =
     { currentDrink = Nothing
     , previousDrinks = []
+    , apiHost = apiHost
     }
 
 
 type alias Model =
     { currentDrink : Maybe (HttpResult Drink)
     , previousDrinks : List Drink
+    , apiHost : String
     }
 
 

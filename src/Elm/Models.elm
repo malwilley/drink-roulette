@@ -8,6 +8,7 @@ type alias Model =
     { ingredients : Ingredients.Models.Model
     , currentDrink : Drinks.Models.Model
     , sidebar : Sidebar
+    , apiHost : String
     }
 
 

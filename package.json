@@ -8,9 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "dev": "webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
+    "watch": "NODE_ENV=production webpack --watch",
+    "dev": "NODE_ENV=development webpack-dev-server",
     "deploy": ". ./deploy.sh"
   },
   "author": "",

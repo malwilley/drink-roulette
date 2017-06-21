@@ -1,23 +1,36 @@
 module Drinks.Commands exposing (..)
 
-import String
 import Http
 import Json.Decode as Decode exposing (..)
+import Json.Encode as Encode
 import Ingredients.Models exposing (IngredientId)
 import Ingredients.Commands
 import Drinks.Messages exposing (..)
 import Drinks.Models exposing (..)
 
 
-getDrink : List IngredientId -> Cmd Msg
-getDrink ids =
-    Http.get (drinkUrl ids) drinkDecoder
+getPost : String -> List IngredientId -> Http.Request Drink
+getPost apiHost ids =
+    Http.post (getDrinkUrl apiHost) (getRequestBody ids) drinkDecoder
+
+
+getDrink : String -> List IngredientId -> Cmd Msg
+getDrink apiHost ids =
+    getPost apiHost ids
         |> Http.send FetchDrinkDone
 
 
-drinkUrl : List Int -> String
-drinkUrl ids =
-    "https://ryanpeaseisabitch.herokuapp.com/makedrink/" ++ (String.join "-" (List.map toString ids))
+getDrinkUrl : String -> String
+getDrinkUrl apiHost =
+    apiHost ++ "/makedrink"
+
+
+getRequestBody : List IngredientId -> Http.Body
+getRequestBody ids =
+    ids
+        |> List.map Encode.int
+        |> Encode.list
+        |> Http.jsonBody
 
 
 drinkDecoder : Decoder Drink

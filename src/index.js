@@ -9,4 +9,11 @@ require('./index.html');
 
 var Elm = require('./Elm/Main.elm');
 var mountNode = document.getElementById('app');
-var app = Elm.Main.embed(mountNode);
+
+var host = process.env.NODE_ENV === 'production' ?
+  'https://ryanpeaseisabitch.herokuapp.com' :
+  'http://localhost:8080';
+
+var app = Elm.Main.embed(mountNode, {
+  apiHost: host,
+});
