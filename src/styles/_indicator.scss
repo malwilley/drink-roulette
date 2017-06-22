@@ -1,0 +1,38 @@
+.search-indicator {
+  position: relative;
+  display: inline-block;
+  background-color: $near-black-light;
+  color: white;
+  font-size: 16px;
+  margin: 8px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 6px;
+}
+
+.search-indicator-fail {
+  background-color: $red;
+  color: lighten($red, 40%);
+}
+
+.search-indicator::before {
+  position: absolute;
+  display: block;
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid $near-black-light;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid transparent;
+  margin-top: -8px;
+}
+
+.search-indicator-fail::before {
+  border-top: 8px solid transparent;
+  border-right: 8px solid $red;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid transparent;
+}

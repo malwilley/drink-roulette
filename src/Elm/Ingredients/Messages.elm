@@ -11,4 +11,5 @@ type Msg
     | OnKeyDown Int
     | SearchBlurred
     | SearchFocused
+    | ClickRetry
     | FetchAllDone (Result Http.Error (List Ingredient))

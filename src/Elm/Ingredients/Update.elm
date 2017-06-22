@@ -1,6 +1,7 @@
 module Ingredients.Update exposing (..)
 
 import Common.Models exposing (..)
+import Ingredients.Commands
 import Ingredients.Models exposing (..)
 import Ingredients.Messages exposing (Msg(..))
 
@@ -8,6 +9,9 @@ import Ingredients.Messages exposing (Msg(..))
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        ClickRetry ->
+            ( model, Ingredients.Commands.getAllIngredients model.apiHost )
+
         SearchResultClicked ingredient ->
             ( model
                 |> toggleIngredient ingredient

@@ -25,17 +25,7 @@ inputView : Model -> Html Msg
 inputView model =
     div [ class "search-bar flex items-stretch mt2 rounded-top" ]
         [ getSearchIcon model
-        , input
-            [ class "flex-auto"
-            , type_ "search"
-            , value model.searchQuery
-            , onKeyDown OnKeyDown
-            , onInput QueryChanged
-            , onFocus SearchFocused
-            , onBlur SearchBlurred
-            , placeholder "Search for an ingredient"
-            ]
-            []
+        , getSearchBar model
         ]
 
 
@@ -49,7 +39,50 @@ getSearchIcon model =
             div [ class "search-icon-container fa fa-search" ] []
 
         Fail msg ->
-            div [ class "search-icon-container fa fa-refresh" ] []
+            div
+                [ class "search-icon-container fa fa-refresh clickable"
+                , onClick ClickRetry
+                ]
+                []
+
+
+getSearchBar : Model -> Html Msg
+getSearchBar model =
+    case model.ingredients of
+        Fetching ->
+            getIndicator False "Loading ingredients..."
+
+        Succeed ingredients ->
+            input
+                [ class "flex-auto"
+                , type_ "search"
+                , value model.searchQuery
+                , onKeyDown OnKeyDown
+                , onInput QueryChanged
+                , onFocus SearchFocused
+                , onBlur SearchBlurred
+                , placeholder "Search for an ingredient"
+                ]
+                [ div [] [ text "Failed to load. Click to retry." ] ]
+
+        Fail msg ->
+            getIndicator True "Failed to load ingredients, click to retry"
+
+
+getIndicator : Bool -> String -> Html Msg
+getIndicator fail msg =
+    let
+        classes =
+            case fail of
+                True ->
+                    "search-indicator search-indicator-fail"
+
+                False ->
+                    "search-indicator"
+    in
+        div
+            [ class classes ]
+            [ text msg ]
 
 
 resultsView : Model -> Html Msg
