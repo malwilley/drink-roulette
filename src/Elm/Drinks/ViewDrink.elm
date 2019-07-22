@@ -47,6 +47,10 @@ toRecipeListItem : IngredientProportion -> Html Msg
 toRecipeListItem ip =
     let
         amount =
-            toString ip.proportion
+            ip.proportion
+                |> (*) 100
+                |> round
+                |> toString
+                |> flip (++) "%"
     in
         li [] [ Html.text (amount ++ " " ++ ip.ingredient.name) ]
