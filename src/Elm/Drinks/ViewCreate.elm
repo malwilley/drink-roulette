@@ -21,7 +21,7 @@ view model =
                     "popdown"
     in
         div
-            [ class "bartop flex items-center flex-none rounded-top justify-center" ]
-            [ button [ class "h3 btn btn-makedrink", onClick MakeDrink ] [ text "create" ]
+            [ class "bartop flex items-center flex-none justify-center" ]
+            [ button [ class "h3 btn btn-makedrink", onClick MakeDrink ] [ text "Create" ]
             , div [ class ("loader-container " ++ animateClass) ] [ Common.Icons.liquidBoxLoader ]
             ]

@@ -6,6 +6,8 @@ $popup-speed: 0.4s;
   height: 120px;
   background: $primary;
   z-index: 1;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .loader-container {
@@ -35,7 +37,6 @@ $popup-speed: 0.4s;
   top: 0;
   z-index: 0;
   padding: 0.8em 1em;
-  text-transform: uppercase;
   font-weight: bold;
   background: $secondary;
   color: lighten($secondary, 60%);
@@ -43,6 +44,7 @@ $popup-speed: 0.4s;
   border-radius: 4px;
   box-shadow: 0px 6px 0px darken($secondary, 10%);
   transition: 200ms ease;
+  font-family: 'Montserrat', sans-serif;
 
   &:hover {
     top: -2px;

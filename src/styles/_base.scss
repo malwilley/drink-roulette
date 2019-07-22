@@ -4,6 +4,11 @@ body {
   min-height: 100vh;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
 button, .btn {
   user-select: none;
   -webkit-user-select: none;
@@ -23,7 +28,7 @@ ul {
 
 #main-container {
   max-width: 1200px;
-  height: 800px;
+  height: 900px;
 }
 
 @media (max-width: 64em) {
